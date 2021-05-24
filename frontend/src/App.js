@@ -1,4 +1,4 @@
-import React,{useState, useEffect} from 'react'
+import React,{useState} from 'react'
 import Button from "@material-ui/core/Button";
 import axios from 'axios';
 import './App.css';
@@ -7,17 +7,9 @@ function App() {
   const [name, setName] = useState("")
   const [greetings, setGreetings] = useState([])
 
-  useEffect(() => {
-    getGreetings("");
-  }, []);
-
-  const baseURL = 'http://localhost:8080'
-
   const getGreetings = (name) => {
     console.log("name = ", name)
-    axios.post("http://localhost:8080/v1/greeting/",
-      name
-    ).then((res) => {
+    axios.post("http://localhost:8080/v1/greeting/", {name}).then((res) => {
       const greetingsData = res.data;
       setGreetings(greetingsData);
       console.log(greetingsData);
@@ -47,7 +39,6 @@ function App() {
               color: "white",
               textTransform: "none",
             }}
-            // startIcon={ <SearchIcon fontSize="small" style={{fill: "white"}}/>}
           >
             Find
           </Button>
