@@ -26,6 +26,5 @@ public class GreetingController {
 	public List<Greeting> getGreeting(@RequestBody GreetingRequest request) {
 		System.out.println("name = " + request.getName() );
 		return greetingService.saveGreeting(request.getName());
-//		return new ArrayList<>();
 	}
 }

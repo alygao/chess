@@ -40,7 +40,7 @@ function App() {
               textTransform: "none",
             }}
           >
-            Find
+            Enter
           </Button>
         {greetings && 
           <ul>
