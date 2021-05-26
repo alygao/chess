@@ -6,8 +6,8 @@ Any chess enthusiast can use our application. By creating a user account, it giv
 
 ### Installation Instructions for Sample Databse to Chosen Platform:
 
-1. Download MySQL, Java, Spring Tool Suite (https://spring.io/tools), Postman (https://www.postman.com/product/rest-client/), and MySQLWorkbench (https://dev.mysql.com/downloads/workbench/)
-2. Clone the git repository (https://github.com/alyssagao1120/chess)
+1. Download MySQL, Java, [Spring Tool Suite](https://spring.io/tools), [Postman](https://www.postman.com/product/rest-client/), and [MySQL Workbench](https://dev.mysql.com/downloads/workbench/)
+2. Clone the git repository
 3. To setup MySQL, first create a password. Once done, open up MySQLWorkbench and connect to the database, entering the password that you created earlier. Then, under the database folder, run the series of commands in greeting.sql to create the necessary schemas and tables.
 4. Open Spring Tool Suite, set 'chess' as the workspace. Once opened, choose the option to import an existing Maven project, select 'backend' folder within 'chess'. If nothing is showing up, try clicking on 'View' in the menu bar and click on 'Package Explorer'. You should now be able to see all the contents within the backend folder.
 5. Modify the application.properties file with the password to connect to your local database.
