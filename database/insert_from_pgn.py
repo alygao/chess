@@ -121,6 +121,3 @@ def main():
   print("num result missing:", num_result_missing)
 
 main()
-# todo: handle errors, 
-# check if following variations gives the correct game
-# extract relevant info
