@@ -9,7 +9,7 @@ cursor = cnx.cursor()
 
 date_regex = re.compile('^\d{4}\.(0[1-9]|1[012])\.(0[1-9]|[12][0-9]|3[01])$')
 
-pgn = open('/home/jason/Desktop/cs348/project/tenth_cleaned.pgn', encoding='iso-8859-1')
+pgn = open('tenth_cleaned.pgn', encoding='iso-8859-1')
 
 INSERT_GAME_SQL = 'INSERT INTO `Game` VALUES (NULL, %s, %s)'
 INSERT_PLAYER_SQL  = 'INSERT INTO `Player` VALUES (NULL, %s, NULL, NULL)'
