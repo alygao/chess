@@ -1,1 +1,3 @@
 /.metadata/
+database/*.pgn
+database/pgn-extract
