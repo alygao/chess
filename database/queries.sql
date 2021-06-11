@@ -12,6 +12,7 @@ SELECT gid FROM `Move` WHERE turnNum = 2 AND moveString = 'c4' AND gid in
   );
 
 -- Find the most popular opening move
+-- todo: doesn't work??
 SELECT moveString, timesUsed FROM
   (SELECT moveString, COUNT(*) AS timesUsed FROM `Move` WHERE turnNum = 0 GROUP BY moveString) AS T
 WHERE timesUsed >= ALL(SELECT COUNT(*) FROM `Move` GROUP BY moveString);

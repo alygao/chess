@@ -35,7 +35,7 @@ CREATE TABLE `PlayedIn` (
   `pid` INT NOT NULL,
   `gid` INT NOT NULL,
   `elo` INT DEFAULT NULL, -- todo: create assertion to check this is within range
-  `isWhite` BOOLEAN NOT NULL, --todo: create assertion that only 1 person is white per game
+  `isWhite` BOOLEAN NOT NULL, -- todo: create assertion that only 1 person is white per game
   PRIMARY KEY (`pid`, `gid`),
   FOREIGN KEY(`pid`) REFERENCES `Player`(`pid`),
   FOREIGN KEY(`gid`) REFERENCES `Game`(`gid`)
