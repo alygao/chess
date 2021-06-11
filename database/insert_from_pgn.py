@@ -2,6 +2,7 @@ import chess.pgn
 import mysql.connector
 import re
 
+# Change the credentials
 cnx = mysql.connector.connect(user='root', password='password',
                               database='chess')
 cursor = cnx.cursor()
@@ -114,7 +115,7 @@ def main():
     f = chess.pgn.read_game(pgn)
     if i % 100 == 0:
       print(i)
-    if i > 500:
+    if i > 10000: # change this line to fill db with more/less games
       break
   print("num variations:", num_variations)
   print("num result missing:", num_result_missing)
