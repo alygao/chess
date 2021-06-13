@@ -31,7 +31,7 @@ CREATE TABLE `Player` (
   PRIMARY KEY (`pid`)
 );
 
-CREATE TABLE `PlayedIn` (
+CREATE TABLE `Played_In` (
   `pid` INT NOT NULL,
   `gid` INT NOT NULL,
   `elo` INT DEFAULT NULL, -- todo: create assertion to check this is within range
@@ -41,15 +41,15 @@ CREATE TABLE `PlayedIn` (
   FOREIGN KEY(`gid`) REFERENCES `Game`(`gid`)
 );
 
-CREATE TABLE `UserFavorited` (
+CREATE TABLE `Player_Favourited` (
   `pid` INT NOT NULL,
   `gid` INT NOT NULL,
   PRIMARY KEY (`pid`, `gid`),
   FOREIGN KEY(`gid`) REFERENCES `Game`(`gid`),
-  FOREIGN KEY(`pid`) REFERENCES `Player`(`pid`)
+  FOREIGN KEY(`username`) REFERENCES `Player`(`username`)
 );
 
-CREATE TABLE `EventGames` (
+CREATE TABLE `Event_Games` (
   `eid` INT NOT NULL,
   `gid` INT NOT NULL,
   PRIMARY KEY (`eid`, `gid`),
