@@ -17,3 +17,13 @@ Any chess enthusiast can use our application. By creating a user account, it giv
 <li>Now, can use Postman to make post requests to http://localhost:8080/v1/greeting/ with JSON body { name: ANY_VALUE }, and will see the updated value entered into your DB as well as the response of all users in the DB currently</li>
 <li>In order to see the application on brower, go to the frontend folder in the command terminal and run npm install and then npm start to start the React app. You can now interact with the project UI at http://localhost:3000/. The frontend is currently set up to be able to make a post request which then receives a response with the updated list of all current users in DB and displays it in the UI.</li>
 </ol>
+
+
+### How to Populate your DB with Real Data
+
+1. Download the pgn file: https://drive.google.com/u/0/uc?id=0Bw0y3jV73lx_NElnLWVlNG9KNkU&export=download
+2. Extract the file and make sure it is in this directory
+3. Run the create_tables.sql script on your MySQL server
+4. Edit `insert_from_pgn.py` with your credentials at the top of script. The bottom of the script has a loop
+which determines how many games to extract. It is set to 10000 right now.
+5. Run `bash populate_db.sh`. You should probably look at the script to read what it does
