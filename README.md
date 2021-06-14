@@ -30,4 +30,4 @@ which determines how many games to extract. It is set to 10000 right now.
 
 ### Features Currently Supported
 
-Our DB current supports features to store games, users/players, and associated moves and events. The UI currently supports simple, mock calls to our back-end to query data.
+Our DB current supports features to store games, users/players, and associated moves and events. Our front-end application currently supports the functionality to register new players and add them to our database through the UI.
