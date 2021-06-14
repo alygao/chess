@@ -16,7 +16,7 @@ INSERT_PLAYER_SQL  = 'INSERT INTO `Player` VALUES (NULL, %s, NULL, NULL)'
 INSERT_PLAYEDIN_SQL = 'INSERT INTO `PlayedIn` VALUES (%s, %s, %s, %s)'
 INSERT_EVENT_SQL = 'INSERT INTO `Event` VALUES (NULL, %s)'
 INSERT_EVENTGAME_SQL = 'INSERT INTO `EventGames` VALUES (%s, %s)'
-INSERT_MOVE_SQL = 'INSERT INTO `Move` VALUES (%s, %s, %s, %s)'
+INSERT_MOVE_SQL = 'INSERT INTO `Move` VALUES (%s, %s, %s, %s, %s, %s, %s)'
 
 player_ids = {}
 event_ids = {}
@@ -32,8 +32,14 @@ def insert_moves(g, gid):
   board = g.board()
   turn_num = 0
   for move in g.mainline_moves():
-    san = board.san(move)
-    data = (gid, turn_num, san, '')
+    move_string = board.san(move)
+    # Assume there is no annotation for now
+    annotation = None
+    to_square = chess.square_name(move.to_square)
+    from_square = chess.square_name(move.from_square)
+    chess_piece = board.piece_at(move.from_square).symbol()
+
+    data = (gid, turn_num, move_string, annotation, to_square, from_square, chess_piece)
     cursor.execute(INSERT_MOVE_SQL, data)
     board.push(move)
     turn_num += 1

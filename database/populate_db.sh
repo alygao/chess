@@ -1,3 +1,7 @@
+#!/bin/bash
+
+set -euo pipefail
+
 # 1. Take the first 10% of games
 head -18776864 all.pgn > tenth.pgn
 # 2. Download and compile pgn-extract
