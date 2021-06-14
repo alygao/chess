@@ -18,10 +18,15 @@ Any chess enthusiast can use our application. By creating a user account, it giv
 <li>In order to see the application on brower, go to the frontend folder in the command terminal and run npm install and then npm start to start the React app. You can now interact with the project UI at http://localhost:3000/. The frontend is currently set up to be able to make a post request which then receives a response with the updated list of all current users in DB and displays it in the UI.</li>
 </ol>
 
-Note: some of the sql queries that we run may require a more updated version of MySQL. To be safe, it is best to install the most recent version of MySQL to a version of 8.0.0 or newer. This should be able to successfully all of our subsequent MySQL queries without issue.
-
-Also, to work with our Python script, which uploads the game data from the pgn file to our local DBs, a Python version of at least 3.8.5 is required for safest, smoothest results
-
+#### Version Requirements
+<ul>
+<li>
+`MySQL` (>= 8.0.0)
+</li>
+<li>
+`Python3` (>= 3.8.5)
+</li>
+</ul>
 
 ### How to Populate your DB with Real Data
 
