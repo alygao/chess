@@ -5,18 +5,16 @@ This is an interactive database of chess games that lets the user enter any sequ
 
 Any chess enthusiast can use our application. By creating a user account, it gives the user the freedom to add their own games and to save their favourite openings. In addition, we also plan to incorporate additional features such as searching/filtering through chess games, interactively inputting a beginning sequence of moves, viewing statistics about win/loss rates for a particular opening, and viewing statistics about the distribution of ELO ratings of players that have played a certain opening (e.g. average ELO).
 
-
 ### Installation Instructions for Sample Databse to Chosen Platform:
-<ol>
-<li>Install the tools specified in the Tools and Version Requirements section below.</li>
-<li>Clone the git repository</li>
-<li>To setup MySQL, first create a password. Once done, open up MySQLWorkbench and connect to the database, entering the password that you created earlier. Then, under the database folder, run the series of commands in greeting.sql to create the necessary schemas and tables.</li>
-<li>Open Spring Tool Suite, set 'chess' as the workspace. Once opened, choose the option to import an existing Maven project, select 'backend' folder within 'chess'. If nothing is showing up, try clicking on 'View' in the menu bar and click on 'Package Explorer'. You should now be able to see all the contents within the backend folder.</li>
-<li>Modify the application.properties file with the password to connect to your local database.</li>
-<li>Right click 'backend' and run as 'Spring Boot App' to start the server.</li>
-<li>Now, can use Postman to make post requests to http://localhost:8080/v1/greeting/ with JSON body { name: ANY_VALUE }, and will see the updated value entered into your DB as well as the response of all users in the DB currently</li>
-<li>In order to see the application on brower, go to the frontend folder in the command terminal and run npm install and then npm start to start the React app. You can now interact with the project UI at http://localhost:3000/. The frontend is currently set up to be able to make a post request which then receives a response with the updated list of all current users in DB and displays it in the UI.</li>
-</ol>
+
+1. Install the tools specified in the Tools and Version Requirements section below.
+2. Clone the git repository
+3. To setup MySQL, first create a password for the root user. Once done, open up MySQLWorkbench and connect to the database, entering the password that you created earlier. Then, by opening the following files in MySQLWorkbench, run `database/create_tables.sql` to create the necessary schemas and tables and run `database/insert_sample_data.sql` to insert the hardcoded sample data. The sample queries can then be run using `database/test-sample.sql` (its output should match the output in `database/test-sample.out`).
+4. Open Spring Tool Suite, set 'chess' as the workspace. Once opened, choose the option to import an existing Maven project, select 'backend' folder within 'chess'. If nothing is showing up, try clicking on 'View' in the menu bar and click on 'Package Explorer'. You should now be able to see all the contents within the backend folder.
+5. Modify the application.properties file with the password to connect to your local database.
+6. Right click 'backend' and run as 'Spring Boot App' to start the server.
+7. Now, can use Postman to make post requests to http://localhost:8080/v1/greeting/ with JSON body { name: ANY_VALUE }, and will see the updated value entered into your DB as well as the response of all users in the DB currently
+8. In order to see the application on brower, go to the frontend folder in the command terminal and run npm install and then npm start to start the React app. You can now interact with the project UI at http://localhost:3000/. The frontend is currently set up to be able to make a post request which then receives a response with the updated list of all current users in DB and displays it in the UI.
 
 #### Tools and Version Requirements
 Tested on Ubuntu 18.04 and macOS 11.4
