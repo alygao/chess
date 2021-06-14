@@ -1,3 +1,5 @@
+CREATE SCHEMA IF NOT EXISTS chess;
+
 USE chess;
 
 DROP TABLE IF EXISTS `EventGames`; 
