@@ -27,3 +27,7 @@ Any chess enthusiast can use our application. By creating a user account, it giv
 4. Edit `insert_from_pgn.py` with your credentials at the top of script. The bottom of the script has a loop
 which determines how many games to extract. It is set to 10000 right now.
 5. Run `bash populate_db.sh`. You should probably look at the script to read what it does
+
+### Features Currently Supported
+
+Our DB current supports features to store games, users/players, and associated moves and events. The UI currently supports simple, mock calls to our back-end to query data.
