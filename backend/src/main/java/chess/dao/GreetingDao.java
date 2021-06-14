@@ -23,7 +23,7 @@ public class GreetingDao {
 	private DataSource dataSource;
 	
 	private static String INSERT_SQL = "INSERT INTO Player (NAME, USERNAME, PASSWORD) VALUES (?,?,?)";
-	private static String SELECT_ALL_SQL = "SELECT ID, GREETING, TIMESTAMP FROM DEMO";
+	private static String SELECT_ALL_SQL = "SELECT PID, NAME FROM PLAYER";
 
 	public int saveGreeting(String greeting) {
 		try (Connection conn = this.dataSource.getConnection();
@@ -51,9 +51,9 @@ public class GreetingDao {
 			ResultSet rs = statement.executeQuery();
 			while (rs.next()) {
 				greetings.add(new Greeting(
-						rs.getInt("ID"),
-						rs.getString("GREETING"),
-						rs.getTimestamp("TIMESTAMP").toString()
+						rs.getInt("PID"),
+						rs.getString("NAME"),
+						new java.util.Date().toString()
 						));
 			}
 			
