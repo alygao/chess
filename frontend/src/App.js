@@ -45,7 +45,7 @@ function App() {
         {greetings && 
           <ul>
             {greetings.map((value, index) => {
-              return <li key={index}>#{value.id} - {value.greeting}. The current time is {value.timestamp}</li>
+              return <li key={index}>#{value.id} - Hello, {value.greeting}. The current time is {value.timestamp}</li>
             })}
           </ul>
         }
