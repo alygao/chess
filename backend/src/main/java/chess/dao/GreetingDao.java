@@ -22,13 +22,15 @@ public class GreetingDao {
 	@Autowired
 	private DataSource dataSource;
 	
-	private static String INSERT_SQL = "INSERT INTO DEMO (GREETING, TIMESTAMP) VALUES (?,CURRENT_TIMESTAMP)";
+	private static String INSERT_SQL = "INSERT INTO Player (NAME, USERNAME, PASSWORD) VALUES (?,?,?)";
 	private static String SELECT_ALL_SQL = "SELECT ID, GREETING, TIMESTAMP FROM DEMO";
 
 	public int saveGreeting(String greeting) {
 		try (Connection conn = this.dataSource.getConnection();
 				PreparedStatement statement = conn.prepareStatement(INSERT_SQL, Statement.RETURN_GENERATED_KEYS)){
 			statement.setString(1, greeting);
+			statement.setString(2, greeting);
+			statement.setString(3, greeting);
 			statement.executeUpdate();
 			ResultSet keys = statement.getGeneratedKeys();
 			if (keys.next()) {
