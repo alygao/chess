@@ -8,7 +8,7 @@ Any chess enthusiast can use our application. By creating a user account, it giv
 
 ### Installation Instructions for Sample Databse to Chosen Platform:
 <ol>
-<li>Download MySQL, Java, [Spring Tool Suite](https://spring.io/tools), [Postman](https://www.postman.com/product/rest-client/), and [MySQL Workbench](https://dev.mysql.com/downloads/workbench/)</li>
+<li>Install the tools specified in the Tools and Version Requirements section below.</li>
 <li>Clone the git repository</li>
 <li>To setup MySQL, first create a password. Once done, open up MySQLWorkbench and connect to the database, entering the password that you created earlier. Then, under the database folder, run the series of commands in greeting.sql to create the necessary schemas and tables.</li>
 <li>Open Spring Tool Suite, set 'chess' as the workspace. Once opened, choose the option to import an existing Maven project, select 'backend' folder within 'chess'. If nothing is showing up, try clicking on 'View' in the menu bar and click on 'Package Explorer'. You should now be able to see all the contents within the backend folder.</li>
@@ -18,16 +18,22 @@ Any chess enthusiast can use our application. By creating a user account, it giv
 <li>In order to see the application on brower, go to the frontend folder in the command terminal and run npm install and then npm start to start the React app. You can now interact with the project UI at http://localhost:3000/. The frontend is currently set up to be able to make a post request which then receives a response with the updated list of all current users in DB and displays it in the UI.</li>
 </ol>
 
-#### Version Requirements
-Tested on Ubuntu 18.04   
+#### Tools and Version Requirements
+Tested on Ubuntu 18.04 and macOS 11.4
+
 To run the main application:
-1. `MySQL` (>= 8.0.0)
+1. [MySQL Community Server](https://dev.mysql.com/downloads/mysql/) (>= 8.0.25)
 2. `jdk` (>= 11.0.5)
+3. [Spring Tool Suite](https://spring.io/tools)
+4. [Postman](https://www.postman.com/product/rest-client/)
+5. [MySQL Workbench](https://dev.mysql.com/downloads/workbench/) (>= 8.0.25)
 
 To run `populate_db.sh`:
 1. `python3` (>= 3.8.5)
-2. `gcc`(>= 7.5)
-3. `make` (>= 4.1)
+- `mysql-connector-python` (`pip3 install mysql-connector-python`)
+3. `gcc`(>= 7.5)
+4. `make` (>= 4.1)
+5. `wget`
 
 The provided versions are what we used during development. We cannot guarantee that lower versions of these dependencies will still work.
 
