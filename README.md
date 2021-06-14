@@ -21,10 +21,10 @@ Any chess enthusiast can use our application. By creating a user account, it giv
 #### Version Requirements
 <ul>
 <li>
-`MySQL` (>= 8.0.0)
+``MySQL`` (>= 8.0.0)
 </li>
 <li>
-`Python3` (>= 3.8.5)
+``Python3`` (>= 3.8.5)
 </li>
 </ul>
 
