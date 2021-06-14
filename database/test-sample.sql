@@ -1,35 +1,73 @@
--- Selecting player 1 games, where player 1 won
-
-SELECT * FROM GAME g 
+-- QUERY ONE
+-- Selecting Player 2's winning games
+SELECT g.gid FROM Game g 
 INNER JOIN (
 SELECT * 
-	FROM PLAYED_IN 
-	WHERE pid = '1'
+	FROM PlayedIn 
+	WHERE pid = '2'
 ) p
 ON g.gid = p.gid
 WHERE 
-(p.isWhite = 1 AND g.winner = 'w')
+	(p.isWhite = 1 AND g.winner = 'w')
 	OR (p.isWhite = 0 AND g.winner = 'b');
 
--- Inserting new Game, with associated moves and event
+-- QUERY TWO
+-- View games with a particular opening: 'd4d5c4'
+SELECT gid 
+FROM (
+	SELECT 
+		gid, 
+		GROUP_CONCAT(DISTINCT moveString ORDER BY turnNum SEPARATOR '') AS moves 
+	FROM `Move` 
+	GROUP BY gid 
+	HAVING moves LIKE 'd4d5c4%'
+) GamesWithOpening;
 
-INSERT INTO `Game` VALUES (1, 'b', '2010-10-10');
+-- QUERY THREE
+-- View percentage of games that have the fourth move as King (K)
+SELECT 
+	numGames * 100 / (SELECT COUNT(*) FROM Game) AS percentOfGames 
+FROM (
+	SELECT 
+		COUNT(gid) AS numGames 
+    FROM Move 
+    WHERE turnNum = 3 AND chessPiece = 'K'
+) NumGamesWithChessPiece;
 
-INSERT INTO `Move` VALUES (1, 0, 'd4', 'very nice');
-INSERT INTO `Move` VALUES (1, 1, 'd5', 'wow';
-INSERT INTO `Move` VALUES (1, 2, 'c4', 'wow');
-INSERT INTO `Move` VALUES (1, 3, 'e6', 'wow');
+-- QUERY FOUR
+-- View user(john123)'s favourited games in which the winner was white.
+SELECT 
+	g.gid 
+FROM Game g 
+INNER JOIN (
+	SELECT gid FROM PlayerFavourited WHERE username = 'john123'
+)uf 
+ON g.gid = uf.gid
+WHERE g.winner = 'w';
 
-INSERT INTO `Event` VALUES (1, 'cs348 chess tournament');
+-- QUERY FIVE
+-- View most favourited games
+WITH numUsersFavourited AS (
+SELECT 
+	gid, 
+    COUNT(username) AS numFavourited 
+FROM PlayerFavourited 
+GROUP BY gid
+)
+SELECT 
+	gid 
+FROM numUsersFavourited 
+WHERE numFavourited = (SELECT MAX(numFavourited) FROM numUsersFavourited);
 
-INSERT INTO `Event_Games` VALUES (1, 1);
+-- QUERY SIX
+-- View all users who favourited games at Event (ID = 2)
+SELECT DISTINCT favouritedGames.pid, favouritedGames.username FROM EventGames eg
+INNER JOIN (
+	SELECT p.pid, p.username, pf.gid FROM Player p 
+	INNER JOIN PlayerFavourited pf ON p.username = pf.username) favouritedGames
+ON eg.gid = favouritedGames.gid
+WHERE eid = 2;
 
--- Adding a new Player
-
-INSERT INTO `Player` VALUES (2, 'john', 'john', 'password');
-
--- View stats about win/loss rates for a particular opening
-
-SELECT * FROM GAME g INNER JOIN MOVE m ON g.gid = m.gid WHERE m.turnNum = 2 AND m.previousMoves LIKE 'd4d5%';
-
--- Find openings with the highest win-rates
+-- Other potential queries we plan to do:
+-------- View stats about win/loss rates for a particular opening
+-------- Find openings with the highest win-rates

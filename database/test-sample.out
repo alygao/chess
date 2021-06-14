@@ -1,9 +1,51 @@
--- Selecting player 1 games, where player 1 won
+-- QUERY ONE
+-- Selecting Player 2's winning games
++=====+
+| gid |
++=====+
+|  1  | 
++=====+
 
--- Inserting new Game, with associated moves and event
+-- QUERY TWO
+-- View games with a particular opening: 'd4d5c4'
++=====+
+| gid |
++=====+
+|  1  | 
+|  2  |
++=====+
 
--- Adding a new Player
+-- QUERY THREE
+-- View percentage of games that have the fourth move as King (K)
++================+
+| percentOfGames |
++================+
+|    25.0000     | 
++================+
 
--- View stats about win/loss rates for a particular opening
+-- QUERY FOUR
+-- View user(john123)'s favourited games in which the winner was white.
++=====+
+| gid |
++=====+
+|  2  | 
+|  3  |
++=====+
 
--- Find openings with the highest win-rates
+-- QUERY FIVE
+-- View most favourited games
++=====+
+| gid |
++=====+
+|  2  | 
+|  4  |
++=====+
+
+-- QUERY SIX
+-- View all users who favourited games at Event (ID = 2)
++=================+
+| pid |  username |
++=================+
+|  3  | alyssa123 |
+|  2  |  john123  |
++=================+
