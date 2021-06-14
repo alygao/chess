@@ -19,9 +19,17 @@ Any chess enthusiast can use our application. By creating a user account, it giv
 </ol>
 
 #### Version Requirements
+Tested on Ubuntu 18.04   
+To run the main application:
 1. `MySQL` (>= 8.0.0)
-2. `Python3` (>= 3.8.5)
+2. `jdk` (>= 11.0.5)
 
+To run `populate_db.sh`:
+1. `python3` (>= 3.8.5)
+2. `gcc`(>= 7.5)
+3. `make` (>= 4.1)
+
+The provided versions are what we used during development. We cannot guarantee that lower versions of these dependencies will still work.
 
 ### How to Populate your DB with Real Data
 
