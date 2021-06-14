@@ -9,7 +9,7 @@ Any chess enthusiast can use our application. By creating a user account, it giv
 
 1. Install the tools specified in the Tools and Version Requirements section below.
 2. Clone the git repository
-3. To setup MySQL, first create a password for the root user. Once done, open up MySQLWorkbench and connect to the database, entering the password that you created earlier. Then, by opening the following files in MySQLWorkbench the database folder, run `database/create_tables.sql` to create the necessary schemas and tables and run `database/insert_sample_data.sql` to insert the hardcoded sample data. The sample queries can then be run using `database/test-sample.sql` (its output should match the output in `database/test-sample.out`).
+3. To setup MySQL, first create a password for the root user. Once done, open up MySQLWorkbench and connect to the database, entering the password that you created earlier. Then, by opening the following files in MySQLWorkbench, run `database/create_tables.sql` to create the necessary schemas and tables and run `database/insert_sample_data.sql` to insert the hardcoded sample data. The sample queries can then be run using `database/test-sample.sql` (its output should match the output in `database/test-sample.out`).
 4. Open Spring Tool Suite, set 'chess' as the workspace. Once opened, choose the option to import an existing Maven project, select 'backend' folder within 'chess'. If nothing is showing up, try clicking on 'View' in the menu bar and click on 'Package Explorer'. You should now be able to see all the contents within the backend folder.
 5. Modify the application.properties file with the password to connect to your local database.
 6. Right click 'backend' and run as 'Spring Boot App' to start the server.
