@@ -15,38 +15,27 @@ import org.springframework.web.bind.annotation.RestController;
 
 import chess.domain.CreateUserRequest;
 import chess.domain.Player;
+import chess.domain.WinStats;
+import chess.services.GameService;
 import chess.services.PlayerService;
 
 @RestController
-@RequestMapping("/v1/player")
+@RequestMapping("/v1/game")
 @CrossOrigin
-public class PlayerController {
+public class GameController {
 	
 	@Autowired
-	private PlayerService playerService;
+	private GameService gameService;
 	
-	@PostMapping("/")
+	@GetMapping("/winstats")
 	// We will only ever create users since players are created
 	// from populate_db.sh
-	public ResponseEntity<String> createUser(@RequestBody CreateUserRequest r) {
+	public ResponseEntity<WinStats> getWinStats(@RequestParam("moveString") String moveString) {
 		// todo: make the fields and requests actually work
-		System.out.println("username = " + r.getUsername() );
-		int id = playerService.createUser(r.getName(), r.getUsername(), r.getPassword());
-		if (id == -1){
-			return ResponseEntity.badRequest().body("probably a duplicate user");
-		}
-		return ResponseEntity.ok().body("");
-	}
-
-	@GetMapping("/")
-	// We will only ever create users since players are created
-	// from populate_db.sh
-	public ResponseEntity<List<Player>> getPlayers(@RequestParam("name") String name) {
-		// todo: make the fields and requests actually work
-		List<Player> players = playerService.getPlayers(name);
-		if (players == null) {
+		WinStats stats = gameService.getWinStats(moveString + "%");
+		if (stats == null) {
 			return ResponseEntity.badRequest().body(null);
 		}
-		return ResponseEntity.ok().body(players);
+		return ResponseEntity.ok().body(stats);
 	}
 }

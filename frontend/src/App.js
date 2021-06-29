@@ -8,6 +8,8 @@ function App() {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [greetings, setGreetings] = useState([])
+  const [winStats, setWinStats] = useState({})
+  const [moveString, setMoveString] = useState("d4d5c4")
 
   const getGreetings = (name, username, password) => {
     console.log("name = ", name)
@@ -17,6 +19,13 @@ function App() {
         setGreetings(greetingsData);
         console.log(greetingsData);
       });
+    });
+  };
+
+  const getWinStats = (moveString) => {
+    axios.get("http://localhost:8080/v1/game/winstats", {params: {moveString}}).then((res) => {
+      setWinStats(res.data);
+      console.log(res.data);
     });
   };
 
@@ -68,6 +77,32 @@ function App() {
               return <li key={index}>#{value.id} - Username: {value.username}, Name: {value.name} </li>
             })}
           </ul>
+        }
+      <input 
+          type="text"
+          key="random4"
+          value={moveString}
+          placeholder="Enter MoveString Here"
+          onChange={(e) => setMoveString(e.target.value)}
+      />
+      <Button
+            onClick={() => {
+              getWinStats(moveString);
+            }}
+            variant="contained"
+            style={{
+              backgroundColor: "black",
+              borderRadius: 100,
+              color: "white",
+              textTransform: "none",
+            }}
+          >
+            Enter
+          </Button>
+        {winStats.numWhiteWins && 
+          <h3>
+            Num White Wins: {winStats.numWhiteWins} Num Black Wins: {winStats.numBlackWins} Num Games: {winStats.numGames}
+          </h3>
         }
     </div>
   );

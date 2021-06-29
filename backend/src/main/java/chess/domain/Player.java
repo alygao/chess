@@ -4,6 +4,7 @@ public class Player {
 	private int id;
 	private String name;
 	private String username;
+	private int elo;
 	
 	public Player() {
 	}
@@ -39,12 +40,22 @@ public class Player {
 		this.username = username;
 	}
 
+	public int getElo() {
+		return this.elo;
+	}
+
+	public void setElo(int elo) {
+		this.elo = elo;
+	}
+
+
 	@Override
 	public String toString() {
-		return "Player {" +
+		return "{" +
 			" id='" + getId() + "'" +
 			", name='" + getName() + "'" +
 			", username='" + getUsername() + "'" +
+			", elo='" + getElo() + "'" +
 			"}";
 	}
 	

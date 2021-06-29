@@ -13,7 +13,6 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import chess.domain.Greeting;
 import chess.domain.Player;
 
 
