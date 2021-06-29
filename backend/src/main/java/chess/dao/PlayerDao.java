@@ -17,13 +17,13 @@ import chess.domain.Greeting;
 
 
 @Repository
-public class GreetingDao {
+public class PlayerDao {
 	
 	@Autowired
 	private DataSource dataSource;
 	
-	private static String INSERT_SQL = "INSERT INTO Player (NAME, USERNAME, PASSWORD) VALUES (?,?,?)";
-	private static String SELECT_ALL_SQL = "SELECT PID, NAME FROM PLAYER";
+	private static String INSERT_SQL = "INSERT INTO Player (name, username, password) VALUES (?,?,?)";
+	private static String SELECT_ALL_SQL = "SELECT pid, name FROM Player";
 
 	public int createPlayer(String greeting) {
 		try (Connection conn = this.dataSource.getConnection();
@@ -51,8 +51,8 @@ public class GreetingDao {
 			ResultSet rs = statement.executeQuery();
 			while (rs.next()) {
 				greetings.add(new Greeting(
-						rs.getInt("PID"),
-						rs.getString("NAME"),
+						rs.getInt("pid"),
+						rs.getString("name"),
 						new java.util.Date().toString()
 						));
 			}

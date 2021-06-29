@@ -24,6 +24,4 @@ public class GreetingRequest {
 	public String toString() {
 		return "GreetingRequest [name=" + name + "]";
 	}
-	
-	
 }

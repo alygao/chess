@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import chess.domain.Greeting;
 import chess.domain.GreetingRequest;
-import chess.services.GreetingService;
+import chess.services.PlayerService;
 
 @RestController
 @RequestMapping("/v1/greeting")
 @CrossOrigin
-public class GreetingController {
+public class PlayerController {
 	
 	@Autowired
 	private PlayerService playerService;
