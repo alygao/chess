@@ -13,7 +13,7 @@ WHERE
 
 -- QUERY TWO
 -- View games with a particular opening: 'd4d5c4'
-SELECT gid 
+SELECT gid, moves
 FROM (
 	SELECT 
 		gid, 
@@ -67,6 +67,28 @@ INNER JOIN (
 	INNER JOIN PlayerFavourited pf ON p.username = pf.username) favouritedGames
 ON eg.gid = favouritedGames.gid
 WHERE eid = 2;
+
+-- QUERY SEVEN
+-- View win stats for games with a particular opening
+SELECT 
+	SUM(CASE
+		WHEN winner = 'w' THEN 1
+		ELSE 0
+		END) AS numWhiteWins,
+	SUM(CASE
+		WHEN winner = 'b' THEN 1
+		ELSE 0
+		END) AS numBlackWins,
+	COUNT(*) AS numGames
+FROM (
+	SELECT 
+		gid, 
+		GROUP_CONCAT(DISTINCT moveString ORDER BY turnNum SEPARATOR '') AS moves 
+	FROM `Move` 
+	GROUP BY gid 
+	HAVING moves LIKE 'd4d5c4%'
+) GamesWithMove, Game
+WHERE GamesWithMove.gid = Game.gid;
 
 -- Other potential queries we plan to do:
 -------- View stats about win/loss rates for a particular opening
