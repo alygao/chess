@@ -1,6 +1,8 @@
 package chess.controllers;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +42,7 @@ public class GameController {
 
 	@GetMapping("/candidate_moves")
 	// Returns possible next moves
+	// Only winStats, turnNum, and moveString are valid in the returned list of moves
 	public ResponseEntity<List<Move>> getCandidateMoves(@RequestParam("moveString") String moveString) {
 		// Default is to return top N most common moves with win rate
 		// todo: do we want to change this? might want to sort on something like elo
@@ -49,6 +52,12 @@ public class GameController {
 		if (result == null) {
 			return ResponseEntity.badRequest().body(null);
 		}
+		Collections.sort(result, new Comparator<Move>() {
+			@Override
+			public int compare(Move a, Move b) {
+				return a.getWinStats().getNumGames() - b.getWinStats().getNumGames();
+			}
+		});
 		return ResponseEntity.ok().body(result);
 	}
 }
