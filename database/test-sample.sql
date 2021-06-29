@@ -17,10 +17,10 @@ SELECT gid, moves
 FROM (
 	SELECT 
 		gid, 
-		GROUP_CONCAT(DISTINCT moveString ORDER BY turnNum SEPARATOR '') AS moves 
+		GROUP_CONCAT(DISTINCT moveString ORDER BY turnNum SEPARATOR '-') AS moves 
 	FROM `Move` 
 	GROUP BY gid 
-	HAVING moves LIKE 'd4d5c4%'
+	HAVING moves LIKE 'd4-d5-c4%'
 ) GamesWithOpening;
 
 -- QUERY THREE
@@ -83,10 +83,10 @@ SELECT
 FROM (
 	SELECT 
 		gid, 
-		GROUP_CONCAT(DISTINCT moveString ORDER BY turnNum SEPARATOR '') AS moves 
+		GROUP_CONCAT(DISTINCT moveString ORDER BY turnNum SEPARATOR '-') AS moves 
 	FROM `Move` 
 	GROUP BY gid 
-	HAVING moves LIKE 'd4d5c4%'
+	HAVING moves LIKE 'd4-d5-c4%'
 ) GamesWithMove, Game
 WHERE GamesWithMove.gid = Game.gid;
 

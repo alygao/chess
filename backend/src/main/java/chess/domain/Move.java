@@ -3,6 +3,7 @@ package chess.domain;
 public class Move {
 	int gid, turnNum;
 	String moveString, fromSquare, toSquare, chessPiece, anotation;
+	WinStats winStats;
 	
 	public Move() {
 	}
@@ -94,6 +95,14 @@ public class Move {
 
 	public void setTurnNum(int turnNum) {
 		this.turnNum = turnNum;
+	}
+
+	public WinStats getWinStats() {
+		return this.winStats;
+	}
+
+	public void setWinStats(WinStats winStats) {
+		this.winStats = winStats;
 	}
 
 	@Override
