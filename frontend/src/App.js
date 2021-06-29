@@ -5,14 +5,18 @@ import './App.css';
 
 function App() {
   const [name, setName] = useState("")
+  const [username, setUsername] = useState("")
+  const [password, setPassword] = useState("")
   const [greetings, setGreetings] = useState([])
 
-  const getGreetings = (name) => {
+  const getGreetings = (name, username, password) => {
     console.log("name = ", name)
-    axios.post("http://localhost:8080/v1/greeting/", {name}).then((res) => {
-      const greetingsData = res.data;
-      setGreetings(greetingsData);
-      console.log(greetingsData);
+    axios.post("http://localhost:8080/v1/player/", {name, username, password}).then((res) => {
+      axios.get("http://localhost:8080/v1/player/", {params: {name}}).then((res) => {
+        const greetingsData = res.data;
+        setGreetings(greetingsData);
+        console.log(greetingsData);
+      });
     });
   };
 
@@ -28,9 +32,25 @@ function App() {
           placeholder="Enter Name Here"
           onChange={(e) => setName(e.target.value)}
       />
+      Enter Username: 
+      <input 
+          type="text"
+          key="random2"
+          value={username}
+          placeholder="Enter Username Here"
+          onChange={(e) => setUsername(e.target.value)}
+      />
+      Enter Password: 
+      <input 
+          type="text"
+          key="random3"
+          value={password}
+          placeholder="Enter Password Here"
+          onChange={(e) => setPassword(e.target.value)}
+      />
       <Button
             onClick={() => {
-              getGreetings(name);
+              getGreetings(name, username, password);
             }}
             variant="contained"
             style={{
@@ -45,7 +65,7 @@ function App() {
         {greetings && 
           <ul>
             {greetings.map((value, index) => {
-              return <li key={index}>#{value.id} - Hello, {value.greeting}. The current time is {value.timestamp}</li>
+              return <li key={index}>#{value.id} - Username: {value.username}, Name: {value.name} </li>
             })}
           </ul>
         }

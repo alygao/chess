@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import chess.domain.Greeting;
+import chess.domain.Player;
 
 
 @Repository
@@ -23,14 +24,14 @@ public class PlayerDao {
 	private DataSource dataSource;
 	
 	private static String INSERT_SQL = "INSERT INTO Player (name, username, password) VALUES (?,?,?)";
-	private static String SELECT_ALL_SQL = "SELECT pid, name FROM Player";
+	private static String SELECT_SQL = "SELECT pid, name, username FROM Player WHERE name = ?";
 
-	public int createPlayer(String greeting) {
+	public int createUser(String name, String username, String password) {
 		try (Connection conn = this.dataSource.getConnection();
 				PreparedStatement statement = conn.prepareStatement(INSERT_SQL, Statement.RETURN_GENERATED_KEYS)){
-			statement.setString(1, greeting);
-			statement.setString(2, greeting);
-			statement.setString(3, greeting);
+			statement.setString(1, name);
+			statement.setString(2, username);
+			statement.setString(3, password);
 			statement.executeUpdate();
 			ResultSet keys = statement.getGeneratedKeys();
 			if (keys.next()) {
@@ -44,16 +45,17 @@ public class PlayerDao {
 		return -1;
 	}
 
-	public List<Greeting> getAllPlayers() {
-		List<Greeting> greetings = new ArrayList<>();
+	public List<Player> getPlayers(String name) {
+		List<Player> players = new ArrayList<>();
 		try (Connection conn = this.dataSource.getConnection();
-				PreparedStatement statement = conn.prepareStatement(SELECT_ALL_SQL)){
+				PreparedStatement statement = conn.prepareStatement(SELECT_SQL)){
+			statement.setString(1, name);
 			ResultSet rs = statement.executeQuery();
 			while (rs.next()) {
-				greetings.add(new Greeting(
+				players.add(new Player(
 						rs.getInt("pid"),
 						rs.getString("name"),
-						new java.util.Date().toString()
+						rs.getString("username")
 						));
 			}
 			
@@ -61,7 +63,7 @@ public class PlayerDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return greetings;
+		return players;
 	}
 	
 	

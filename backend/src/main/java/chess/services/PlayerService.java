@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import chess.dao.PlayerDao;
-import chess.domain.Greeting;
+import chess.domain.Player;
 
 @Service
 public class PlayerService {
@@ -15,7 +15,7 @@ public class PlayerService {
 	@Autowired
 	private PlayerDao playerDao;
 	
-	public List<Greeting> savePlayer(String name) {
+	public int createUser(String name, String username, String password) {
 		// String greeting = "";
 		// if (Calendar.getInstance().get(Calendar.HOUR_OF_DAY) < 12 ) {
 		// 	greeting += "Good Morning, " + name;
@@ -24,7 +24,11 @@ public class PlayerService {
 		// } else {
 		// 	greeting += "Good Evening, " + name;
 		// }
-		this.playerDao.createPlayer(name);
-		return this.playerDao.getAllPlayers();
+		
+		return this.playerDao.createUser(name, username, password);
+	}
+
+	public List<Player> getPlayers(String name) {
+		return this.playerDao.getPlayers(name);
 	}
 }
