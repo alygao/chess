@@ -46,6 +46,7 @@ public class GameController {
 	public ResponseEntity<List<Move>> getCandidateMoves(@RequestParam("moveString") String moveString) {
 		// Default is to return top N most common moves with win rate
 		// todo: do we want to change this? might want to sort on something like elo
+		// todo: add stats for average elo of players for each move?
 
 		List<Move> result = gameService.getCandidateMoves(moveString);
 		if (result == null) {
@@ -66,6 +67,15 @@ public class GameController {
 	// Add more parameters as needed
 	public ResponseEntity<List<Game>> getGames(@RequestParam(name = "playerId", required = false) int playerId) {
 		List<Game> result = gameService.getGames(playerId);
+		if (result == null) {
+			return ResponseEntity.badRequest().body(null);
+		}
+		return ResponseEntity.ok().body(result);
+	}
+
+	@GetMapping("/moves")
+	public ResponseEntity<List<Move>> getMoves(@RequestParam(name = "gameId") int gid) {
+		List<Move> result = gameService.getMoves(gid);
 		if (result == null) {
 			return ResponseEntity.badRequest().body(null);
 		}

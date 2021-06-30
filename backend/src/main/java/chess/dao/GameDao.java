@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import chess.domain.Game;
+import chess.domain.Move;
 import chess.domain.Player;
 import chess.domain.WinStats;
 
@@ -29,6 +30,7 @@ public class GameDao {
 	private static String WIN_STATS_SQL = "SELECT SUM(CASE WHEN winner = 'w' THEN 1 ELSE 0 END) AS numWhiteWins, SUM(CASE WHEN winner = 'b' THEN 1 ELSE 0 END) AS numBlackWins, COUNT(*) AS numGames FROM ( SELECT gid, GROUP_CONCAT(DISTINCT moveString ORDER BY turnNum SEPARATOR '-') AS moves FROM `Move` GROUP BY gid HAVING moves LIKE ?) GamesWithMove, Game WHERE GamesWithMove.gid = Game.gid";
 	private static String GAMES_WITH_OPENING_SQL = "SELECT gid, moves FROM (SELECT gid, GROUP_CONCAT(DISTINCT moveString ORDER BY turnNum SEPARATOR '-') AS moves FROM `Move` GROUP BY gid HAVING moves LIKE ?) GamesWithOpening";
 	private static String GAME_WITH_PLAYER_SELECT_SQL = "SELECT g.gid, winner, `date`, pi1.pid AS pid1, pi2.pid AS pid2, pi1.elo AS elo1, pi2.elo AS elo2, pi1.isWHite AS p1IsWhite, p1.name as p1name, p2.name as p2name, p1.username as p1username, p2.username as p2username FROM Game g INNER JOIN PlayedIn pi1 ON g.gid = pi1.gid AND pi1.pid = ? INNER JOIN PlayedIn pi2 ON g.gid = pi2.gid AND pi2.pid != ? INNER JOIN Player p1 ON pi1.pid = p1.pid INNER JOIN Player p2 ON pi2.pid = p2.pid";
+	private static String MOVES_IN_GAME_SQL = "SELECT * FROM Move WHERE gid = ?";
 
 	public WinStats getWinStats(String moveString) {
 		try (Connection conn = this.dataSource.getConnection();
@@ -113,5 +115,28 @@ public class GameDao {
 		}
 		return null;
 
+	}
+
+	public List<Move> getMoves(int gid) {
+		try (Connection conn = this.dataSource.getConnection();
+				PreparedStatement statement = conn.prepareStatement(MOVES_IN_GAME_SQL)){
+			statement.setInt(1, gid);
+			ResultSet rs = statement.executeQuery();
+			List<Move> result = new ArrayList<>();
+			while (rs.next()) {
+				Move m = new Move();
+				m.setGid(gid);
+				m.setAnotation(rs.getString("annotation"));
+				m.setChessPiece(rs.getString("chessPiece"));
+				m.setTurnNum(rs.getInt("turnNum"));
+				m.setFromSquare(rs.getString("fromSquare"));
+				m.setToSquare(rs.getString("toSquare"));
+				result.add(m);
+			}
+			return result;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

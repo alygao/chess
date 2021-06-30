@@ -44,9 +44,15 @@ public class GameService {
 		}
 		return result;
 	}
+
 	public List<Game> getGames(int pid) {
 		// get player and game date
 		return this.gameDao.getGames(pid);
+	}
+
+	public List<Move> getMoves(int gid) {
+		// get player and game date
+		return this.gameDao.getMoves(gid);
 	}
 
 }

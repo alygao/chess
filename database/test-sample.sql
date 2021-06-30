@@ -101,6 +101,9 @@ SELECT g.gid, winner, `date`, pi1.pid AS pid1, pi2.pid AS pid2, pi1.elo AS elo1,
 		ON pi1.pid = p1.pid
 	INNER JOIN Player p2
 		ON pi2.pid = p2.pid;
+        
+-- Query 9: get moves for a game
+SELECT * FROM Move WHERE gid = 1;
 
 -- Other potential queries we plan to do:
 -------- View stats about win/loss rates for a particular opening
