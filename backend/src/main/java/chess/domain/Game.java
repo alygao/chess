@@ -61,5 +61,13 @@ public class Game {
 		this.moves = moves;
 	}
 
+
+	public int getGid() {
+		return this.gid;
+	}
+
+	public void setGid(int gid) {
+		this.gid = gid;
+	}
 	
 }

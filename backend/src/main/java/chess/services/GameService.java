@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import chess.dao.GameDao;
 import chess.dao.PlayerDao;
+import chess.domain.Game;
 import chess.domain.Move;
 import chess.domain.Player;
 import chess.domain.WinStats;
@@ -43,4 +44,9 @@ public class GameService {
 		}
 		return result;
 	}
+	public List<Game> getGames(int pid) {
+		// get player and game date
+		return this.gameDao.getGames(pid);
+	}
+
 }
