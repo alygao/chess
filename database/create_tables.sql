@@ -10,11 +10,20 @@ DROP TABLE IF EXISTS `Event`;
 DROP TABLE IF EXISTS `Move`; 
 DROP TABLE IF EXISTS `Game`; 
 
+
+CREATE TABLE `Event` (
+  `eid` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(128) NOT NULL,
+  PRIMARY KEY (`eid`)
+);
+
 CREATE TABLE `Game` (
   `gid` INT NOT NULL AUTO_INCREMENT,
   `winner` CHAR(1) NOT NULL CHECK(`winner` = 'b' OR `winner` = 'w' OR `winner` = 't'),
   `date` DATE DEFAULT NULL,
-  PRIMARY KEY (`gid`)
+  `eid` INT NOT NULL,
+  PRIMARY KEY (`gid`),
+  FOREIGN KEY(`eid`) REFERENCES `Event`(`eid`)
 );
 
 CREATE TABLE `Move` (
@@ -28,12 +37,6 @@ CREATE TABLE `Move` (
   -- Can add fromSquare, toSquare, chessPiece if we need them for our ui
   PRIMARY KEY (`gid`, `turnNum`),
   FOREIGN KEY(`gid`) REFERENCES `Game`(`gid`)
-);
-
-CREATE TABLE `Event` (
-  `eid` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(128) NOT NULL,
-  PRIMARY KEY (`eid`)
 );
 
 CREATE TABLE `Player` (

@@ -1,9 +1,12 @@
 USE chess;
 
-INSERT INTO `Game` VALUES (1, 'b', '2010-10-10');
-INSERT INTO `Game` VALUES (2, 'w', '2011-11-11');
-INSERT INTO `Game` VALUES (3, 'w', '2011-11-11');
-INSERT INTO `Game` VALUES (4, 'b', '2011-11-11');
+INSERT INTO `Event` VALUES (1, 'cs348 chess tournament');
+INSERT INTO `Event` VALUES (2, 'world championship');
+
+INSERT INTO `Game` VALUES (1, 'b', '2010-10-10', 1);
+INSERT INTO `Game` VALUES (2, 'w', '2011-11-11', 2);
+INSERT INTO `Game` VALUES (3, 'w', '2011-11-11', 1);
+INSERT INTO `Game` VALUES (4, 'b', '2011-11-11', 2);
 
 INSERT INTO `Move` VALUES (1, 0, 'd4', 'very nice', 'd2', 'd4', 'P');
 INSERT INTO `Move` VALUES (1, 1, 'd5', 'wow', 'd7', 'd5', 'P');
@@ -24,13 +27,7 @@ INSERT INTO `Move` VALUES (3, 1, 'h5', 'very nice', 'h7', 'h5', 'P');
 INSERT INTO `Move` VALUES (3, 2, 'a3', 'very nice', 'a1', 'a3', 'R');
 INSERT INTO `Move` VALUES (3, 3, 'f6', 'very nice', 'g8', 'f6', 'K');
 
-INSERT INTO `Event` VALUES (1, 'cs348 chess tournament');
-INSERT INTO `Event` VALUES (2, 'world championship');
 
-INSERT INTO `EventGames` VALUES (1, 1);
-INSERT INTO `EventGames` VALUES (2, 2);
-INSERT INTO `EventGames` VALUES (1, 3);
-INSERT INTO `EventGames` VALUES (2, 4);
 
 INSERT INTO `Player` VALUES (1, 'jason', NULL, NULL);
 INSERT INTO `Player` VALUES (2, 'john', 'john123', 'password');
