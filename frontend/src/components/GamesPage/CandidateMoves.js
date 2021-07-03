@@ -2,7 +2,6 @@ import Button from "@material-ui/core/Button";
 import React, { useEffect, useState } from "react";
 import CandidateMovesTable from "./CandidateMovesTable";
 
-import axios from "axios";
 
 function CandidateMoves({moves, candidateMoves}) {
 
@@ -11,19 +10,19 @@ function CandidateMoves({moves, candidateMoves}) {
     const candidateMovesColumns = React.useMemo(() => [
         {
           Header: "Move",
-          accessor: "_id",
+          accessor: "moveString",
         },
         {
           Header: "Game ID",
-          accessor: "areaCode",
+          accessor: "gid",
         },
         {
-          Header: "Rating",
-          accessor: "totalBuyers",
+          Header: "White Wins",
+          accessor: "winStats.numWhiteWins",
         },
         {
-          Header: "White Win/Draw/Black Win",
-          accessor: "totalWeight",
+          Header: "Black Wins",
+          accessor: "winStats.numBlackWins",
         },
         {
           Header: " ",
@@ -31,13 +30,13 @@ function CandidateMoves({moves, candidateMoves}) {
             <Button
               variant="contained"
               style={{
-                backgroundColor: "#1753E5",
+                backgroundColor: "black",
                 borderRadius: 100,
                 color: "white",
                 textTransform: "none",
               }}
             >
-              View shipment
+              Use Move
             </Button>
           ),
         },
@@ -45,8 +44,8 @@ function CandidateMoves({moves, candidateMoves}) {
     
 
     return (
-        <div style={{background: "#38454F", padding: "1rem"}}>
-            <h2>Candidate Moves</h2>
+        <div style={{padding: "1rem"}}>
+            <h1>Candidate Moves</h1>
             <CandidateMovesTable candidateMoves={candidateMoves} columns={candidateMovesColumns}/>
         </div>
     )

@@ -7,6 +7,8 @@ import ChessBoard from "./ChessBoard"
 import GameStepsPanel from "./GameStepsPanel/GameStepsPanel"
 import CandidateMoves from "./CandidateMoves"
 
+import axios from "axios";
+
 const Chess = require("chess.js");
 
 
@@ -26,11 +28,11 @@ function GamesPage() {
             previousMovesString = previousMovesString.concat(moves[i].to)
         }
         console.log("previousMovesString = ", previousMovesString);
-        // axios.get("http://localhost:8080/v1/game/candidateMoves", { params: { previousMovesString } }).then((res) => {
-        //   const candidateMoves = res.data;
-        //   setCandidateMoves(candidateMoves);
-        //   console.log(candidateMoves);
-        // });
+        axios.get("http://localhost:8080/v1/game/candidate_moves", { params: { previousMovesString } }).then((res) => {
+          const candidateMoves = res.data;
+          setCandidateMoves(candidateMoves);
+          console.log(candidateMoves);
+        });
       };
 
     const [chess, setChess] = useState(

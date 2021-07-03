@@ -10,7 +10,7 @@ function GameControlButtons({chess, setChess, fen, setFen, setMoves, setMostRece
         setFenList([])
         setFen(chess.fen())
         setMostRecentMove('')
-        getCandidateMovesByPreviousMoves(moves)
+        getCandidateMovesByPreviousMoves([])
     }
 
     const undoMove = (e) => {

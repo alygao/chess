@@ -2,7 +2,7 @@
 
 th, td{
     text-align: center;
-    font-family: Raleway;
+    font-family: Rockwell;
     color: #FFFFFF
 
 }
@@ -12,7 +12,6 @@ th{
     color: #FFFFFF;
     font-family: Raleway;
     font-weight: bold;
-    /* font-family: Century-Gothic-Bold; */
 }
 
 tr {

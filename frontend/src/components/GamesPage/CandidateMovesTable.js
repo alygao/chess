@@ -11,8 +11,8 @@ function CandidateMovesTable({candidateMoves, columns}) {
 
   return (
     <Table
-      columns={columns}
-      data={data}
+        columns={columns}
+        data={data}
     />
   );
 }

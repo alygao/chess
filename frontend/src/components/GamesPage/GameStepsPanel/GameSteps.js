@@ -10,7 +10,7 @@ function GameSteps({
 
     return (
         <div className="game-steps-main-container">
-            <h2>GAME</h2>
+            <h1 style={{color: '#F2EDD4'}}>Game</h1>
             <div className="game-steps">
                 {moves.map((move, i) =>
                     <div key={i}>
