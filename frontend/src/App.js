@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import isEmpty from 'lodash/isEmpty'
 import Button from "@material-ui/core/Button";
 import axios from 'axios';
 import './App.css';
@@ -71,12 +72,14 @@ function App() {
       >
         Enter
       </Button>
-      {greetings &&
+      {!isEmpty(greetings) ?
         <ul>
           {greetings.map((value, index) => {
             return <li key={index}>#{value.id} - Username: {value.username}, Name: {value.name} </li>
           })}
         </ul>
+        :
+        null
       }
       <input
         type="text"
@@ -99,12 +102,14 @@ function App() {
       >
         Enter
       </Button>
-      {winStats.numWhiteWins &&
+      {!isEmpty(winStats) ?
         <h3>
           Num White Wins: {winStats.numWhiteWins} Num Black Wins: {winStats.numBlackWins} Num Games: {winStats.numGames}
         </h3>
+        :
+        null
       }
-    </div>
+    </div >
   );
 }
 
