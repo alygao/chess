@@ -1,4 +1,4 @@
-import "./GamesPage.css";
+import "./OpeningsPage.css";
 
 import { useHistory, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -12,7 +12,7 @@ import axios from "axios";
 const Chess = require("chess.js");
 
 
-function GamesPage() {
+function OpeningsPage() {
     const [moves, setMoves] = useState([]);
     const [mostRecentMove, setMostRecentMove] = useState('');
 
@@ -56,4 +56,4 @@ function GamesPage() {
     )
 }
 
-export default GamesPage;
+export default OpeningsPage;
