@@ -1,0 +1,8 @@
+.game-control-buttons-main-container {
+    display: flex;
+    flex-direction: column;
+    margin: 0 1rem;
+    justify-content: center;
+    overflow-y:auto;
+    height: 40vh
+}

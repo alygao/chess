@@ -1,0 +1,10 @@
+.game-steps-main-container {
+    background: #38454F;
+    padding: 1rem;
+    width: 20vw
+}
+
+.game-steps { 
+    color: #F2EDD4;
+    font-weight: lighter;
+}
