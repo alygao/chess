@@ -1,0 +1,22 @@
+.general-page-main-container {
+    margin: 0.5rem 5vw;
+    padding: 1rem;
+     vertical-align: top;
+     position:relative;
+     height: auto;
+}
+
+.general-page-menu-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 2.5vh;
+}
+
+.general-page-menu-bar-left {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    color: black
+}

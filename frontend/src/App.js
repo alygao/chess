@@ -2,6 +2,9 @@ import React,{useState} from 'react'
 import Button from "@material-ui/core/Button";
 import axios from 'axios';
 import './App.css';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+import GeneralPageLayout from './components/GeneralPageLayout'
 
 function App() {
   const [name, setName] = useState("")
@@ -32,7 +35,13 @@ function App() {
 
   return (
     <div className="App">
-      <h1>chess!</h1>
+      <Router>
+        <Route path="/" component={GeneralPageLayout} />
+      </Router>
+
+
+
+      {/* <h1>chess!</h1>
       Enter Name: 
       <input 
           type="text"
@@ -46,7 +55,7 @@ function App() {
           type="text"
           key="random2"
           value={username}
-          placeholder="Enter Username Here"
+          placeholder="Enter Username Here"e
           onChange={(e) => setUsername(e.target.value)}
       />
       Enter Password: 
@@ -103,7 +112,7 @@ function App() {
           <h3>
             Num White Wins: {winStats.numWhiteWins} Num Black Wins: {winStats.numBlackWins} Num Games: {winStats.numGames}
           </h3>
-        }
+        } */}
     </div>
   );
 }
