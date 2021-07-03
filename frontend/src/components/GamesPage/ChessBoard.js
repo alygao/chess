@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Chessboard from "chessboardjsx";
+import { ChessInstance, ShortMove } from "chess.js";
 
 const Chess = require("chess.js");
 
