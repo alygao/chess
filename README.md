@@ -47,3 +47,9 @@ which determines how many games to extract. It is set to 10000 right now.
 ### Features Currently Supported
 
 Our DB current supports features to store games, users/players, and associated moves and events. Our front-end application currently supports the functionality to register new players and add them to our database through the UI.
+
+## How to Run the Application
+
+To run the application, start your local MySQL database (as detailed above). Next, run the Java `backend` part of the application with the Spring Boot Client, as explained for getting the sample database and endpoints set-up. And finally, cd into the `frontend` part of the project, run `npm install` and then run `npm start` to actually see the project live.
+
+In essence, to run this application, we need to start our database (stores all our chess data), our back-end (which handles the queries to the DB), and then finally run the front-end (pings the API endpoints supported by our back-end), which the user will see + interact with.
