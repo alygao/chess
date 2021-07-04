@@ -9,6 +9,7 @@ function SingleGameChessboard({chess, fen, setFen, movesInGame}) {
 
     const previousMove = (e) => {
         if (turnNum <= 0) {
+            setFen("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
             return;
         }
         
