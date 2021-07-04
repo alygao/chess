@@ -28,6 +28,7 @@ public class EventController {
 
 	@GetMapping("/events")
 	public ResponseEntity<List<Event>> getEvents() {
+		System.out.println("hullo");;
 		List<Event> events = eventService.getEvents();
 		if (events == null) {
 			return ResponseEntity.badRequest().body(null);
@@ -37,6 +38,7 @@ public class EventController {
 
 	@GetMapping("/games")
 	public ResponseEntity<List<Game>> getGames(@RequestParam("eid") int eid) {
+		System.out.println("hello");
 		List<Game> games = eventService.getGames(eid);
 		if (games == null) {
 			return ResponseEntity.badRequest().body(null);
