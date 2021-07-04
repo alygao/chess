@@ -41,6 +41,7 @@ function GeneralPageLayout() {
     setEventsPageShown(false);
     setIsSingleGameShown(false);
     setIsSingleEventShown(false);
+    setDefaultValue(-1);
   };
 
   const handleOpeningsPage = (e) => {
@@ -50,6 +51,7 @@ function GeneralPageLayout() {
     setEventsPageShown(false);
     setIsSingleGameShown(false);
     setIsSingleEventShown(false);
+    setDefaultValue(-1);
   };
 
   const handleEventsPage = (e) => {
@@ -59,6 +61,7 @@ function GeneralPageLayout() {
     setEventsPageShown(true);
     setIsSingleGameShown(false);
     setIsSingleEventShown(false);
+    setDefaultValue(-1);
   };
 
   return (
