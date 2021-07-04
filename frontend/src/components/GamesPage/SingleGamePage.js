@@ -2,10 +2,18 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import Button from "@material-ui/core/Button";
 import MovesTable from './MovesTable'
+import SingleGameChessboard from "./SingleGameChessboard";
+
+const Chess = require("chess.js");
 
 function SingleGamePage({setIsSingleGameShown, currGameId}) {
     const [game, setGame] = useState(null);
     const [movesInGame, setMovesInGame] = useState([]);
+
+    const [chess, setChess] = useState(
+        new Chess("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1")
+    );
+    const [fen, setFen] = useState(chess.fen());
 
     useEffect(() => {
         getGame(currGameId);
@@ -33,9 +41,9 @@ function SingleGamePage({setIsSingleGameShown, currGameId}) {
     };
 
     return (
-        <div>
+        <div style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
             <h1>Game #{currGameId}</h1>
-            
+            <SingleGameChessboard chess={chess} fen={fen} setFen={setFen} movesInGame={movesInGame}/>
             <MovesTable data={movesInGame}/>
         </div>
     )
