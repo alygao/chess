@@ -3,10 +3,7 @@ import SearchBar from "./SearchBar";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Button from "@material-ui/core/Button";
-
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
+import GamesTable from './GamesTable';
 
 
 function GamesPage() {
@@ -81,6 +78,7 @@ function GamesPage() {
                     </Button>
                 </div>
             </div>
+            <GamesTable data={games} />
         </div>
     )
 }
