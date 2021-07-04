@@ -20,7 +20,7 @@ public class EventService {
 		return this.eventDao.getEvents();
 	}
 
-	public List<Game> getGames(int name) {
-		return this.eventDao.getGames(name);
+	public List<Game> getGames(int eid) {
+		return this.eventDao.getGames(eid);
 	}
 }
