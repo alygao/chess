@@ -10,10 +10,16 @@ public class Player {
 	}
 
 	public Player(int id, String name, String username) {
-		super();
 		this.id = id;
 		this.name = name;
 		this.username = username;
+	}
+	
+	public Player(int id, String name, String username, int elo) {
+		this.id = id;
+		this.name = name;
+		this.username = username;
+		this.elo = elo;
 	}
 
 	public int getId() {

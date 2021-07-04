@@ -26,11 +26,11 @@ public class GameService {
 		return this.gameDao.getWinStats(moveString);
 	}
 
-	public List<Move> getCandidateMoves(String moveString) {
+	public List<Move> getCandidateMoves(String previousMovesString) {
 		// 1. get N games with the prefix moveString
 		// 2. get winstats for each of them
 		// 3. sort and return
-		Set<String> candidateMoveStrings = this.gameDao.getCandidateMoves(moveString);
+		Set<String> candidateMoveStrings = this.gameDao.getCandidateMoves(previousMovesString);
 		List<Move> result = new ArrayList<>();
 		for (String m : candidateMoveStrings) {
 			//todo: this is slow
@@ -48,6 +48,12 @@ public class GameService {
 	public List<Game> getGames(int pid) {
 		// get player and game date
 		return this.gameDao.getGames(pid);
+	}
+	
+	public List<Game> getGames(String playerName, boolean viewBlackWinGames, boolean viewWhiteWinGames, boolean viewDrawGames) {
+		// get player and game date
+		System.out.println("IN SERVICE.........");
+		return this.gameDao.getGames(playerName, viewBlackWinGames, viewWhiteWinGames, viewDrawGames);
 	}
 
 	public List<Move> getMoves(int gid) {
