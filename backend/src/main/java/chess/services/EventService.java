@@ -17,10 +17,10 @@ public class EventService {
 	private EventDao eventDao;
 
 	public List<Event> getEvents() {
-		return this.playerDao.getEvents();
+		return this.eventDao.getEvents();
 	}
 
 	public List<Game> getGames(int name) {
-		return this.playerDao.getGames(name);
+		return this.eventDao.getGames(name);
 	}
 }

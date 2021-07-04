@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import chess.domain.Event;
+import chess.domain.Game;
+import chess.domain.Player;
 
 @Repository
 public class EventDao {
@@ -22,9 +24,10 @@ public class EventDao {
 	private DataSource dataSource;
 	
 	private static String SELECT_SQL = "SELECT eid, name FROM EVENT";
-	private static String GAME_WITH_PLAYER_NAME_SELECT_SQL = "SELECT DISTINCT g.gid, g.winner, g.date, g.eid FROM Game g INNER JOIN PlayedIn pi ON g.gid = pi.gid INNER JOIN Player p ON pi.pid = p.pid WHERE g.eid = ?";;
+	private static String GAME_WITH_PLAYER_NAME_SELECT_SQL = "SELECT * FROM Game WHERE eid = ?";
+	private static String PLAYERS_IN_GAME_SELECT_SQL = "SELECT p.pid, p.name, p.username, pi.elo, pi.isWhite FROM Player p INNER JOIN PlayedIn pi ON p.pid = pi.pid WHERE pi.gid = ?";
 
-	public List<Event> getEvents(String name) {
+	public List<Event> getEvents() {
 		List<Event> events = new ArrayList<>();
 		try (Connection conn = this.dataSource.getConnection();
 				PreparedStatement statement = conn.prepareStatement(SELECT_SQL)){
@@ -42,31 +45,10 @@ public class EventDao {
 		return events;
 	}
 
-	public List<Game> getGames(int eid, boolean viewBlackWinGames, boolean viewWhiteWinGames, boolean viewDrawGames) {
-		String winnerConditions = "";
-		if (viewBlackWinGames) {
-			winnerConditions = winnerConditions + "g.winner='b'";
-		}
-		if (viewWhiteWinGames) {
-			if (winnerConditions.length() > 0) {
-				winnerConditions = winnerConditions + " OR ";
-			}
-			winnerConditions = winnerConditions + "g.winner='w'";
-		}
-		if (viewDrawGames) {
-			if (winnerConditions.length() > 0) {
-				winnerConditions = winnerConditions + " OR ";
-			}
-			winnerConditions = winnerConditions + "g.winner='t'";
-		}
-		
-		String SQL_STRING = GAME_WITH_PLAYER_NAME_SELECT_SQL;
-		if (winnerConditions.length() > 0) {
-			SQL_STRING = SQL_STRING + " AND (" + winnerConditions + ")";
-		}
+	public List<Game> getGames(int eid) {
 		
 		try (Connection conn = this.dataSource.getConnection();
-				PreparedStatement statement = conn.prepareStatement(SQL_STRING)){
+				PreparedStatement statement = conn.prepareStatement(GAME_WITH_PLAYER_NAME_SELECT_SQL)){
 			statement.setInt(1, eid);
 			ResultSet rs = statement.executeQuery();
 			List<Game> result = new ArrayList<>();

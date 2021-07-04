@@ -14,8 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import chess.domain.CreateUserRequest;
+import chess.domain.Event;
 import chess.domain.Game;
-import chess.services.PlayerService;
+import chess.services.EventService;
 
 @RestController
 @RequestMapping("/v1/events")
@@ -27,7 +28,7 @@ public class EventController {
 
 	@GetMapping("/events")
 	public ResponseEntity<List<Event>> getEvents() {
-		List<Player> events = eventService.getEvents();
+		List<Event> events = eventService.getEvents();
 		if (events == null) {
 			return ResponseEntity.badRequest().body(null);
 		}
@@ -35,9 +36,9 @@ public class EventController {
 	}
 
 	@GetMapping("/games")
-	public ResponseEntity<List<Game>> getGames(@RequestParam("name") int name) {
-		List<Game> games = eventService.getGames(name, true, true, true);
-		if (players == null) {
+	public ResponseEntity<List<Game>> getGames(@RequestParam("eid") int eid) {
+		List<Game> games = eventService.getGames(eid);
+		if (games == null) {
 			return ResponseEntity.badRequest().body(null);
 		}
 		return ResponseEntity.ok().body(games);
