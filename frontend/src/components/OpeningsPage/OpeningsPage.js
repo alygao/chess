@@ -26,9 +26,9 @@ function OpeningsPage() {
         let previousMovesString = "";
         for (let i = 0; i < moves.length; i++) {
             if (previousMovesString.length > 0) {
-                previousMovesString = previousMovesString.concat("-" + moves[i].san)
+                previousMovesString = previousMovesString.concat("-" + moves[i].san);
             } else {
-                previousMovesString = previousMovesString.concat(moves[i].san)
+                previousMovesString = previousMovesString.concat(moves[i].san);
             }
         }
         console.log("previousMovesString = '" + previousMovesString + "'");
@@ -48,8 +48,6 @@ function OpeningsPage() {
 
     const handleMove = (move) => {
         move = chess.move(move);
-        console.log('here');
-        console.log('move:', move);
         if (move) {
             console.log(move)
             var newMoves = moves
