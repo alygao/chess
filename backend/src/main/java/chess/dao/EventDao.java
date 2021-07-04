@@ -21,46 +21,24 @@ public class EventDao {
 	@Autowired
 	private DataSource dataSource;
 	
-	private static String SELECT_SQL = "SELECT pid, name, username FROM Player WHERE name = ?";
+	private static String SELECT_SQL = "SELECT eid, name FROM EVENT";
 
-	public int createUser(String name, String username, String password) {
-		try (Connection conn = this.dataSource.getConnection();
-				PreparedStatement statement = conn.prepareStatement(INSERT_SQL, Statement.RETURN_GENERATED_KEYS)){
-			statement.setString(1, name);
-			statement.setString(2, username);
-			statement.setString(3, password);
-			statement.executeUpdate();
-			ResultSet keys = statement.getGeneratedKeys();
-			if (keys.next()) {
-				return keys.getInt(1);
-			}
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return -1;
-	}
-
-	public List<Player> getPlayers(String name) {
-		List<Player> players = new ArrayList<>();
+	public List<Event> getEvents(String name) {
+		List<Event> events = new ArrayList<>();
 		try (Connection conn = this.dataSource.getConnection();
 				PreparedStatement statement = conn.prepareStatement(SELECT_SQL)){
-			statement.setString(1, name);
 			ResultSet rs = statement.executeQuery();
 			while (rs.next()) {
-				players.add(new Player(
-						rs.getInt("pid"),
-						rs.getString("name"),
-						rs.getString("username")
+				events.add(new Event(
+						rs.getInt("eid"),
+						rs.getString("name")
 						));
 			}
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return players;
+		return events;
 	}
 	
 	
