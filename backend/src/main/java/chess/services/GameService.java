@@ -18,10 +18,10 @@ import chess.domain.WinStats;
 
 @Service
 public class GameService {
-	
+
 	@Autowired
 	private GameDao gameDao;
-	
+
 	public WinStats getWinStats(String moveString) {
 		return this.gameDao.getWinStats(moveString);
 	}
@@ -33,13 +33,17 @@ public class GameService {
 		Set<String> candidateMoveStrings = this.gameDao.getCandidateMoves(previousMovesString);
 		List<Move> result = new ArrayList<>();
 		for (String m : candidateMoveStrings) {
-			//todo: this is slow
+			// todo: this is slow
 			Move move = new Move();
-			String[] sanMoves = m.split("-");
-			move.setTurnNum(sanMoves.length-1);
-			move.setMoveString(sanMoves[sanMoves.length-1]);
-			WinStats stats = this.gameDao.getWinStats(m);
+			String currentMoveString;
+			if (previousMovesString.length() == 0) {
+				currentMoveString = m;
+			} else {
+				currentMoveString = previousMovesString + "-" + m;
+			}
+			WinStats stats = this.gameDao.getWinStats(currentMoveString);
 			move.setWinStats(stats);
+			move.setMoveString(m);
 			result.add(move);
 		}
 		return result;
@@ -49,13 +53,14 @@ public class GameService {
 		// get player and game data
 		return this.gameDao.getGames(pid);
 	}
-	
-	public List<Game> getGames(String playerName, boolean viewBlackWinGames, boolean viewWhiteWinGames, boolean viewDrawGames) {
+
+	public List<Game> getGames(String playerName, boolean viewBlackWinGames, boolean viewWhiteWinGames,
+			boolean viewDrawGames) {
 		// get player and game data
 		System.out.println("IN SERVICE.........");
 		return this.gameDao.getGames(playerName, viewBlackWinGames, viewWhiteWinGames, viewDrawGames);
 	}
-	
+
 	public Game getGame(int gid) {
 		// get gama data
 		return this.gameDao.getGame(gid);
