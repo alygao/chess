@@ -1,11 +1,9 @@
 import Button from "@material-ui/core/Button";
 import React, { useEffect, useState } from "react";
 import CandidateMovesTable from "./CandidateMovesTable";
-
+import HorizontalBar from "./HorizontalBar";
 
 function CandidateMoves({ moves, candidateMoves, handleMove }) {
-
-
 
   const candidateMovesColumns = React.useMemo(() => [
     {
@@ -44,6 +42,40 @@ function CandidateMoves({ moves, candidateMoves, handleMove }) {
       Header: "Draws",
       accessor: "winStats.numDraws",
     },
+    {
+      Header: "Games",
+      accessor: "winStats.numGames",
+    },
+    {
+      Header: "White / Draw / Black",
+      Cell: ({ cell }) => {
+        console.log(cell);
+
+        return <HorizontalBar
+          showTextIn
+          fontColor={["black", "white", "white"]}
+          data={
+            [
+              {
+                description: cell.row.values["winStats.numWhiteWins"],
+                value: cell.row.values["winStats.numWhiteWins"],
+                color: "white"
+              },
+              {
+                description: cell.row.values["winStats.numDraws"],
+                value: cell.row.values["winStats.numWhiteWins"],
+                color: "gray"
+              },
+              {
+                description: cell.row.values["winStats.numBlackWins"],
+                value: cell.row.values["winStats.numBlackWins"],
+                color: "black"
+              },
+
+            ]
+          } />
+      }
+    }
   ]);
 
 

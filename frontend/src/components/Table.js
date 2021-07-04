@@ -10,17 +10,20 @@ import { useTable } from "react-table";
 
 import "./Table.css"
 
-function Table({columns, data, setSingleShipmentShown, setCurrShipmentId, setCurrAreaCode, fulfilled, setFulfilled}) {
+function Table({ columns, data, hiddenColumns }) {
   // Use the state and functions returned from useTable to build your UI
   const { getTableProps, headerGroups, rows, prepareRow } = useTable(
     {
       columns,
       data,
+      initialState: {
+        hiddenColumns: hiddenColumns
+      }
     },
   );
 
 
-  const viewShipment = (tableRow) => {} 
+  const viewShipment = (tableRow) => { }
 
   // Render the UI for your table
   return (
@@ -41,22 +44,22 @@ function Table({columns, data, setSingleShipmentShown, setCurrShipmentId, setCur
           prepareRow(row);
           return (
             // <TableRow {...row.getRowProps()}>
-              <tr 
-                // {...row.getRowProps()} onClick={() => {
-                //   setCurrShipmentId(row.original._id)
-                //   setSingleShipmentShown(true)
-                //   setCurrAreaCode(row.original.areaCode)
-                //   setFulfilled(fulfilled)
-                //   console.log(row.original._id)}}
-              >
-                {row.cells.map(cell => {
-                  return (
-                    <TableCell {...cell.getCellProps()}>
-                      {cell.render('Cell')}
-                    </TableCell>
-                  )
-                })}
-              </tr>
+            <tr
+            // {...row.getRowProps()} onClick={() => {
+            //   setCurrShipmentId(row.original._id)
+            //   setSingleShipmentShown(true)
+            //   setCurrAreaCode(row.original.areaCode)
+            //   setFulfilled(fulfilled)
+            //   console.log(row.original._id)}}
+            >
+              {row.cells.map(cell => {
+                return (
+                  <TableCell {...cell.getCellProps()}>
+                    {cell.render('Cell')}
+                  </TableCell>
+                )
+              })}
+            </tr>
             // </TableRow>
           )
         })}

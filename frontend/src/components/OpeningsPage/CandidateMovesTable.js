@@ -4,12 +4,19 @@ import Button from "@material-ui/core/Button";
 import Table from "../Table";
 import "../Table.css";
 
-function CandidateMovesTable({candidateMoves, columns}) {
+function CandidateMovesTable({ candidateMoves, columns }) {
 
   return (
     <Table
-        columns={columns}
-        data={candidateMoves}
+      columns={columns}
+      data={candidateMoves}
+      hiddenColumns={
+        [
+          "winStats.numWhiteWins",
+          "winStats.numDraws",
+          "winStats.numBlackWins",
+        ]
+      }
     />
   );
 }
