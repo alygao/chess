@@ -1,23 +1,34 @@
 import axios from 'axios';
+import Table from "../Table";
+import "../Table.css";
 
 function EventsPage() {
 
-    const [greetings, setGreetings] = useState([]);
+    const [events, setEvents] = useState([]);
 
     const getEvents = () => {
-        axios.post("http://localhost:8080/v1/player/", { name, username, password }).then((res) => {
-          axios.get("http://localhost:8080/v1/player/", { params: { name } }).then((res) => {
-            const greetingsData = res.data;
-            setGreetings(greetingsData);
-            console.log(greetingsData);
-          });
+        axios.get("http://localhost:8080/v1/events/events").then((res) => {
+            const eventsData = res.data;
+            setEvents(eventsData);
         });
-      };
+    };
+
+    const columns = React.useMemo(() => [
+        {
+          Header: "Move",
+          accessor: "moveString",
+        },
+        {
+          Header: "Game ID",
+          accessor: "gid",
+        }
+      ]);
 
     return (
-        <div>
-            Events Page
-        </div>
+        <Table
+        columns={columns}
+        data={data}
+    />
     )
 }
 

@@ -5,14 +5,11 @@ import Table from "../Table";
 import "../Table.css";
 
 function CandidateMovesTable({candidateMoves, columns}) {
-  
-
-  const data = candidateMoves;
 
   return (
     <Table
         columns={columns}
-        data={data}
+        data={candidateMoves}
     />
   );
 }
