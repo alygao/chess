@@ -1,0 +1,23 @@
+.games-page-main-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.games-page-main-content {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: center;
+    margin: 5rem;
+}
+
+.games-page-search-bar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 3rem 0;
+    text-align: center;
+    justify-content: center;
+}
