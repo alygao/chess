@@ -6,7 +6,7 @@ import chessIcon from "../images/chess_icon.svg";
 
 import GeneralGamesPage from "./GamesPage/GeneralGamesPage";
 import OpeningsPage from "./OpeningsPage/OpeningsPage";
-import GeneralEventsPage from "./EventsPage/GeneralEventsPage";
+import GeneralEventsPage from "./EventsPage/GeneralEvents";
 
 // import PropTypes from "prop-types";
 // import { connect } from "react-redux";

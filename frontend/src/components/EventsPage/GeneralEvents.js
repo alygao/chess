@@ -1,5 +1,5 @@
 import EventsPage from "./EventsPage";
-import SingleEventPage from "./SingleEventsPage";
+import SingleEventPage from "./SingleEvent";
 
 import { useState } from "react";
 
