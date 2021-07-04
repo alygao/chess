@@ -82,8 +82,18 @@ public class GameController {
 			@RequestParam("viewWhiteWinGames") boolean viewWhiteWinGames,
 			@RequestParam("viewDrawGames") boolean viewDrawGames
 			) {
-		System.out.println("GETTING GAMES..............");
 		List<Game> result = gameService.getGames(playerName, viewBlackWinGames, viewWhiteWinGames, viewDrawGames);
+		if (result == null) {
+			return ResponseEntity.badRequest().body(null);
+		}
+		return ResponseEntity.ok().body(result);
+	}
+	
+	@GetMapping("/single")
+	// Returns games filtered by some criteria
+	// Add more parameters as needed
+	public ResponseEntity<Game> getGame(@RequestParam(name = "gid", required = false) int gid) {
+		Game result = gameService.getGame(gid);
 		if (result == null) {
 			return ResponseEntity.badRequest().body(null);
 		}
@@ -91,7 +101,7 @@ public class GameController {
 	}
 
 	@GetMapping("/moves")
-	public ResponseEntity<List<Move>> getMoves(@RequestParam(name = "gameId") int gid) {
+	public ResponseEntity<List<Move>> getMoves(@RequestParam(name = "gid") int gid) {
 		List<Move> result = gameService.getMoves(gid);
 		if (result == null) {
 			return ResponseEntity.badRequest().body(null);

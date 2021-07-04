@@ -4,12 +4,7 @@ import { useHistory, Link } from "react-router-dom";
 import { useState } from "react";
 import chessIcon from "../images/chess_icon.svg";
 
-// Material UI
-// import Button from "@material-ui/core/Button";
-// import { ThemeProvider } from "@material-ui/core/styles";
-
-
-import GamesPage from "./GamesPage/GamesPage";
+import GeneralGamesPage from "./GamesPage/GeneralGamesPage";
 import OpeningsPage from "./OpeningsPage/OpeningsPage";
 
 // import PropTypes from "prop-types";
@@ -37,7 +32,7 @@ function GeneralPageLayout() {
 
   const handleGamesPage = (e) => {
     e.preventDefault();
-    setGamesPageShown(true);
+    setGamesPageShown(true,);
     setOpeningsPageShown(false);
     setEventsPageShown(false);
     setIsSingleGameShown(false)
@@ -76,7 +71,7 @@ function GeneralPageLayout() {
           </div>
         </div>
         <div className="general-page-content">
-          {isGamesPageShown && <GamesPage isSingleGameShown={isSingleGameShown} setIsSingleGameShown={setIsSingleGameShown}/>}
+          {isGamesPageShown && <GeneralGamesPage isSingleGameShown={isSingleGameShown} setIsSingleGameShown={setIsSingleGameShown}/>}
           {isOpeningsPageShown && <OpeningsPage/>}
           {/* {isEventsPageShown && <EventsPage/>} */}
         </div>

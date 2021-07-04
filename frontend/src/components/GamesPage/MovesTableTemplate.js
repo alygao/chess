@@ -1,3 +1,4 @@
+  
 import React from 'react'
 
 import MaUTable from '@material-ui/core/Table'
@@ -8,24 +9,22 @@ import TableRow from '@material-ui/core/TableRow'
 
 import { useTable } from 'react-table'
 
-function GamesTableTemplate({columns, data,  setIsSingleGameShown, setCurrGameId}) {
-
+function MovesTableTemplate({columns, data}) {
   // Use the state and functions returned from useTable to build your UI
   const { getTableProps, headerGroups, rows, prepareRow } = useTable({
     columns,
     data,
   })
 
-
   // Render the UI for your table
   return (
     <MaUTable {...getTableProps()}>
       <TableHead>
-        {headerGroups.map((headerGroup) => (
+        {headerGroups.map(headerGroup => (
           <TableRow {...headerGroup.getHeaderGroupProps()}>
-            {headerGroup.headers.map((column) => (
+            {headerGroup.headers.map(column => (
               <TableCell {...column.getHeaderProps()}>
-                {column.render("Header")}
+                {column.render('Header')}
               </TableCell>
             ))}
           </TableRow>
@@ -33,14 +32,9 @@ function GamesTableTemplate({columns, data,  setIsSingleGameShown, setCurrGameId
       </TableHead>
       <TableBody>
         {rows.map((row, i) => {
-          prepareRow(row);
+          prepareRow(row)
           return (
-            // <TableRow {...row.getRowProps()}>
-              <tr {...row.getRowProps()} onClick={() => {
-                console.log(row.original.gid)
-                setIsSingleGameShown(true)
-                setCurrGameId(row.original.gid)
-              }}>
+            <TableRow {...row.getRowProps()}>
                 {row.cells.map(cell => {
                   return (
                     <TableCell {...cell.getCellProps()}>
@@ -48,13 +42,12 @@ function GamesTableTemplate({columns, data,  setIsSingleGameShown, setCurrGameId
                     </TableCell>
                   )
                 })}
-              </tr>
-            // </TableRow>
+            </TableRow>
           )
         })}
       </TableBody>
     </MaUTable>
-  );
+  )
 }
 
-export default GamesTableTemplate;
+export default MovesTableTemplate;
