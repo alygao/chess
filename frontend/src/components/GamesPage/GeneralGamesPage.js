@@ -3,9 +3,9 @@ import SingleGamePage from "./SingleGamePage";
 
 import { useState } from "react";
 
-function GeneralGamesPage({ isSingleGameShown, setIsSingleGameShown}) {
+function GeneralGamesPage({ isSingleGameShown, setIsSingleGameShown, defaultValue }) {
   
-    const [currGameId, setCurrGameId] = useState(-1);
+    const [currGameId, setCurrGameId] = useState(defaultValue);
 
   return (
     <>

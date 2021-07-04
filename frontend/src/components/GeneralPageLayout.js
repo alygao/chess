@@ -6,7 +6,7 @@ import chessIcon from "../images/chess_icon.svg";
 
 import GeneralGamesPage from "./GamesPage/GeneralGamesPage";
 import OpeningsPage from "./OpeningsPage/OpeningsPage";
-import EventsPage from "./EventsPage/EventsPage";
+import GeneralEventsPage from "./EventsPage/GeneralEventsPage";
 
 // import PropTypes from "prop-types";
 // import { connect } from "react-redux";
@@ -17,6 +17,9 @@ function GeneralPageLayout() {
   const [isOpeningsPageShown, setOpeningsPageShown] = useState(false);
   const [isEventsPageShown, setEventsPageShown] = useState(false);
   const [ isSingleGameShown, setIsSingleGameShown] = useState(false);
+  const [ isSingleEvemtShown, setIsSingleEventShown] = useState(false);
+  const [ defaultValue, setDefaultValue] = useState(-1);
+  
 
   // const history = useHistory();
 
@@ -36,7 +39,8 @@ function GeneralPageLayout() {
     setGamesPageShown(true,);
     setOpeningsPageShown(false);
     setEventsPageShown(false);
-    setIsSingleGameShown(false)
+    setIsSingleGameShown(false);
+    setIsSingleEventShown(false);
   };
 
   const handleOpeningsPage = (e) => {
@@ -44,7 +48,8 @@ function GeneralPageLayout() {
     setGamesPageShown(false);
     setOpeningsPageShown(true);
     setEventsPageShown(false);
-    setIsSingleGameShown(false)
+    setIsSingleGameShown(false);
+    setIsSingleEventShown(false);
   };
 
   const handleEventsPage = (e) => {
@@ -52,7 +57,8 @@ function GeneralPageLayout() {
     setGamesPageShown(false);
     setOpeningsPageShown(false);
     setEventsPageShown(true);
-    setIsSingleGameShown(false)
+    setIsSingleGameShown(false);
+    setIsSingleEventShown(false);
   };
 
   return (
@@ -72,9 +78,9 @@ function GeneralPageLayout() {
           </div>
         </div>
         <div className="general-page-content">
-          {isGamesPageShown && <GeneralGamesPage isSingleGameShown={isSingleGameShown} setIsSingleGameShown={setIsSingleGameShown}/>}
+          {isGamesPageShown && <GeneralGamesPage isSingleGameShown={isSingleGameShown} setIsSingleGameShown={setIsSingleGameShown} defaultValue={defaultValue}/>}
           {isOpeningsPageShown && <OpeningsPage/>}
-          {isEventsPageShown && <EventsPage/>}
+          {isEventsPageShown && <GeneralEventsPage isSingleEventShown={isSingleEvemtShown} setIsSingleEventShown={setIsSingleEventShown} setIsSingleGameShown={setIsSingleGameShown} setDefaultValue={setDefaultValue} />}
         </div>
     </div>
   );
