@@ -39,7 +39,7 @@ function OrderTableTemplate({columns, data,  setIsSingleGameShown, setCurrGameId
               <tr {...row.getRowProps()} onClick={() => {
                 console.log(row.original.gid)
                 setIsSingleGameShown(true)
-                setCurrGameId(row.original.gid)
+                // setCurrGameId(row.original.gid)
               }}>
                 {row.cells.map(cell => {
                   return (
