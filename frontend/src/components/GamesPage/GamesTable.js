@@ -2,11 +2,12 @@
 import '../Table.css';
 
 import React, { useState } from 'react';
+import Button from "@material-ui/core/Button";
 
 import GamesTableTemplate from './GamesTableTemplate'
 
 
-function GamesTable({data}) {
+function GamesTable({data, setIsSingleGameShown, setCurrGameId}) {
     const columns = React.useMemo(
         () => [
             {
@@ -35,13 +36,29 @@ function GamesTable({data}) {
                 accessor: 'black.name',
             },{
                 Header: 'BLACK PLAYER ELO',
-                accessor: 'black.elo',
-          }
+                    accessor: 'black.elo',
+            },{
+                Header: " ",
+                Cell: () => (
+                <Button
+                    variant="contained"
+                    style={{
+                    backgroundColor: "#A5C1BE",
+                    borderRadius: 100,
+                    fontFamily: "Raleway",
+                    color: "black",
+                    textTransform: "none",
+                    }}
+                >
+                    View Game
+                </Button>
+                ),
+            }
         ]
       )
 
     return (
-        <GamesTableTemplate columns={columns} data={data} />
+        <GamesTableTemplate columns={columns} data={data} setIsSingleGameShown={setIsSingleGameShown} setCurrGameId={setCurrGameId}/>
     )
 }
 

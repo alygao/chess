@@ -22,7 +22,7 @@ function Table({columns, data, setSingleShipmentShown, setCurrShipmentId, setCur
 
   const viewShipment = (tableRow) => {} 
 
-  // Render the UI for your table
+ // Render the UI for your table
   return (
     <MaUTable {...getTableProps()}>
       <TableHead>
@@ -41,14 +41,13 @@ function Table({columns, data, setSingleShipmentShown, setCurrShipmentId, setCur
           prepareRow(row);
           return (
             // <TableRow {...row.getRowProps()}>
-              <tr 
-                // {...row.getRowProps()} onClick={() => {
-                //   setCurrShipmentId(row.original._id)
-                //   setSingleShipmentShown(true)
-                //   setCurrAreaCode(row.original.areaCode)
-                //   setFulfilled(fulfilled)
-                //   console.log(row.original._id)}}
-              >
+              <tr {...row.getRowProps()} onClick={() => {
+                  setCurrShipmentId(row.original._id)
+                  setSingleShipmentShown(true)
+                  setCurrAreaCode(row.original.areaCode)
+                  setFulfilled(fulfilled)
+                  console.log(row.original._id)
+              }}>
                 {row.cells.map(cell => {
                   return (
                     <TableCell {...cell.getCellProps()}>

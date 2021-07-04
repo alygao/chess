@@ -8,7 +8,8 @@ import TableRow from '@material-ui/core/TableRow'
 
 import { useTable } from 'react-table'
 
-function OrderTableTemplate({columns, data}) {
+function OrderTableTemplate({columns, data,  setIsSingleGameShown, setCurrGameId}) {
+
   // Use the state and functions returned from useTable to build your UI
   const { getTableProps, headerGroups, rows, prepareRow } = useTable({
     columns,
@@ -20,11 +21,11 @@ function OrderTableTemplate({columns, data}) {
   return (
     <MaUTable {...getTableProps()}>
       <TableHead>
-        {headerGroups.map(headerGroup => (
+        {headerGroups.map((headerGroup) => (
           <TableRow {...headerGroup.getHeaderGroupProps()}>
-            {headerGroup.headers.map(column => (
+            {headerGroup.headers.map((column) => (
               <TableCell {...column.getHeaderProps()}>
-                {column.render('Header')}
+                {column.render("Header")}
               </TableCell>
             ))}
           </TableRow>
@@ -32,9 +33,14 @@ function OrderTableTemplate({columns, data}) {
       </TableHead>
       <TableBody>
         {rows.map((row, i) => {
-          prepareRow(row)
+          prepareRow(row);
           return (
-            <TableRow {...row.getRowProps()}>
+            // <TableRow {...row.getRowProps()}>
+              <tr {...row.getRowProps()} onClick={() => {
+                console.log(row.original.gid)
+                setIsSingleGameShown(true)
+                setCurrGameId(row.original.gid)
+              }}>
                 {row.cells.map(cell => {
                   return (
                     <TableCell {...cell.getCellProps()}>
@@ -42,12 +48,13 @@ function OrderTableTemplate({columns, data}) {
                     </TableCell>
                   )
                 })}
-            </TableRow>
+              </tr>
+            // </TableRow>
           )
         })}
       </TableBody>
     </MaUTable>
-  )
+  );
 }
 
 export default OrderTableTemplate;

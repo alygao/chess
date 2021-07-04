@@ -20,6 +20,7 @@ function GeneralPageLayout() {
   const [isGamesPageShown, setGamesPageShown] = useState(true);
   const [isOpeningsPageShown, setOpeningsPageShown] = useState(false);
   const [isEventsPageShown, setEventsPageShown] = useState(false);
+  const [ isSingleGameShown, setIsSingleGameShown] = useState(false);
 
   // const history = useHistory();
 
@@ -39,6 +40,7 @@ function GeneralPageLayout() {
     setGamesPageShown(true);
     setOpeningsPageShown(false);
     setEventsPageShown(false);
+    setIsSingleGameShown(false)
   };
 
   const handleOpeningsPage = (e) => {
@@ -46,6 +48,7 @@ function GeneralPageLayout() {
     setGamesPageShown(false);
     setOpeningsPageShown(true);
     setEventsPageShown(false);
+    setIsSingleGameShown(false)
   };
 
   const handleEventsPage = (e) => {
@@ -53,6 +56,7 @@ function GeneralPageLayout() {
     setGamesPageShown(false);
     setOpeningsPageShown(false);
     setEventsPageShown(true);
+    setIsSingleGameShown(false)
   };
 
   return (
@@ -72,7 +76,7 @@ function GeneralPageLayout() {
           </div>
         </div>
         <div className="general-page-content">
-          {isGamesPageShown && <GamesPage/>}
+          {isGamesPageShown && <GamesPage isSingleGameShown={isSingleGameShown} setIsSingleGameShown={setIsSingleGameShown}/>}
           {isOpeningsPageShown && <OpeningsPage/>}
           {/* {isEventsPageShown && <EventsPage/>} */}
         </div>

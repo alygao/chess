@@ -6,7 +6,7 @@ import Button from "@material-ui/core/Button";
 import GamesTable from './GamesTable';
 
 
-function GamesPage() {
+function GamesPage({setIsSingleGameShown, setCurrGameId}) {
     const [searchInput, setSearchInput] = useState("");
     const [viewBlackWinGames, setViewBlackWinGames] = useState(true);
     const [viewWhiteWinGames, setViewWhiteWinGames] = useState(true);
@@ -78,7 +78,7 @@ function GamesPage() {
                     </Button>
                 </div>
             </div>
-            <GamesTable data={games} />
+            <GamesTable data={games} setIsSingleGameShown={setIsSingleGameShown} setCurrGameId={setCurrGameId}/>
         </div>
     )
 }
