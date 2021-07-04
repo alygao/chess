@@ -58,7 +58,7 @@ function SingleGameChessboard({chess, fen, setFen, movesInGame}) {
                 margin: "1rem"
                 }}
             >
-                previous board
+                previous move
             </Button>
 
             <Button
