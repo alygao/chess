@@ -46,14 +46,19 @@ public class GameService {
 	}
 
 	public List<Game> getGames(int pid) {
-		// get player and game date
+		// get player and game data
 		return this.gameDao.getGames(pid);
 	}
 	
 	public List<Game> getGames(String playerName, boolean viewBlackWinGames, boolean viewWhiteWinGames, boolean viewDrawGames) {
-		// get player and game date
+		// get player and game data
 		System.out.println("IN SERVICE.........");
 		return this.gameDao.getGames(playerName, viewBlackWinGames, viewWhiteWinGames, viewDrawGames);
+	}
+	
+	public Game getGame(int gid) {
+		// get gama data
+		return this.gameDao.getGame(gid);
 	}
 
 	public List<Move> getMoves(int gid) {

@@ -17,7 +17,7 @@ function GameControlButtons({chess, setChess, fen, setFen, setMoves, setMostRece
         chess.undo()
         var updatedMoves = moves
 
-        if (moves.length == 0) {
+        if (moves.length === 0) {
             return
         }
         updatedMoves.pop()

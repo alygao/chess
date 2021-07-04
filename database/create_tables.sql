@@ -2,7 +2,7 @@ CREATE SCHEMA IF NOT EXISTS chess;
 
 USE chess;
 
--- DROP TABLE IF EXISTS `EventGames`; 
+DROP TABLE IF EXISTS `EventGames`; 
 DROP TABLE IF EXISTS `PlayerFavourited`; 
 DROP TABLE IF EXISTS `PlayedIn`; 
 DROP TABLE IF EXISTS `Player`; 

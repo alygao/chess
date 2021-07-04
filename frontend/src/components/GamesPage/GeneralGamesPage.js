@@ -1,10 +1,11 @@
-import GamesPage from "./Shipments";
-import SingleGamePage from "./Shipment";
+import GamesPage from "./GamesPage";
+import SingleGamePage from "./SingleGamePage";
 
 import { useState } from "react";
 
-function ShipmentsPage({ isSingleGameShown, setIsSingleGameShown}) {
-  const [currGameId, setCurrGameId] = useState(-1);
+function GeneralGamesPage({ isSingleGameShown, setIsSingleGameShown}) {
+  
+    const [currGameId, setCurrGameId] = useState(-1);
 
   return (
     <>
@@ -23,4 +24,4 @@ function ShipmentsPage({ isSingleGameShown, setIsSingleGameShown}) {
   );
 }
 
-export default ShipmentsPage;
+export default GeneralGamesPage;

@@ -62,4 +62,4 @@ function GamesTable({data, setIsSingleGameShown, setCurrGameId}) {
     )
 }
 
-export default GamesTable
+export default GamesTable;
