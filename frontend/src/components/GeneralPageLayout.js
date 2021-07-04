@@ -11,6 +11,7 @@ import chessIcon from "../images/chess_icon.svg";
 
 import GamesPage from "./GamesPage/GamesPage";
 import OpeningsPage from "./OpeningsPage/OpeningsPage";
+import EventsPage from "./EventsPage/EventsPage";
 
 // import PropTypes from "prop-types";
 // import { connect } from "react-redux";
@@ -78,7 +79,7 @@ function GeneralPageLayout() {
         <div className="general-page-content">
           {isGamesPageShown && <GamesPage isSingleGameShown={isSingleGameShown} setIsSingleGameShown={setIsSingleGameShown}/>}
           {isOpeningsPageShown && <OpeningsPage/>}
-          {/* {isEventsPageShown && <EventsPage/>} */}
+          {isEventsPageShown && <EventsPage/>}
         </div>
     </div>
   );

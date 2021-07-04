@@ -1,6 +1,7 @@
 import axios from 'axios';
-import Table from "../Table";
 import "../Table.css";
+import EventsTable from './EventsTable';
+import React, { useEffect, useState } from "react";
 
 function EventsPage() {
 
@@ -13,22 +14,16 @@ function EventsPage() {
         });
     };
 
-    const columns = React.useMemo(() => [
-        {
-          Header: "Move",
-          accessor: "moveString",
-        },
-        {
-          Header: "Game ID",
-          accessor: "gid",
-        }
-      ]);
+    useEffect(() => {
+        getEvents();
+    }, []);
 
     return (
-        <Table
-        columns={columns}
-        data={data}
-    />
+        <>
+            <h1>Events</h1>
+            <EventsTable data={events} />
+        </>
+
     )
 }
 

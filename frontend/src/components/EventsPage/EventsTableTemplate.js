@@ -8,12 +8,12 @@ import TableRow from '@material-ui/core/TableRow'
 
 import { useTable } from 'react-table'
 
-function OrderTableTemplate({columns, data,  setIsSingleGameShown, setCurrGameId}) {
+function OrderTableTemplate({columns, data}) {
 
   // Use the state and functions returned from useTable to build your UI
   const { getTableProps, headerGroups, rows, prepareRow } = useTable({
     columns,
-    data,
+    data
   })
 
   // Render the UI for your table
@@ -34,12 +34,12 @@ function OrderTableTemplate({columns, data,  setIsSingleGameShown, setCurrGameId
         {rows.map((row, i) => {
           prepareRow(row);
           return (
-            // <TableRow {...row.getRowProps()}>
-              <tr {...row.getRowProps()} onClick={() => {
-                console.log(row.original.gid)
-                setIsSingleGameShown(true)
-                setCurrGameId(row.original.gid)
-              }}>
+              // <tr {...row.getRowProps()} onClick={() => {
+              //   console.log(row.original.gid)
+              //   setIsSingleGameShown(true)
+              //   setCurrGameId(row.original.gid)
+              // }}>
+              <tr>
                 {row.cells.map(cell => {
                   return (
                     <TableCell {...cell.getCellProps()}>
@@ -48,7 +48,6 @@ function OrderTableTemplate({columns, data,  setIsSingleGameShown, setCurrGameId
                   )
                 })}
               </tr>
-            // </TableRow>
           )
         })}
       </TableBody>
