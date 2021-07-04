@@ -4,7 +4,7 @@ import { ChessInstance, ShortMove } from "chess.js";
 
 const Chess = require("chess.js");
 
-function ChessBoard({ moves, getCandidateMovesByPreviousMoves, setMoves, setMostRecentMove, chess, fen, setFen, fenList, setFenList }) {
+function ChessBoard({ fen, handleMove }) {
 
   // const [chess] = useState(
   //     new Chess("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1")
@@ -12,23 +12,6 @@ function ChessBoard({ moves, getCandidateMovesByPreviousMoves, setMoves, setMost
 
   // const [fen, setFen] = useState(chess.fen());
   console.log(fen)
-
-  const handleMove = (move) => {
-    move = chess.move(move);
-    if (move) {
-      console.log(move)
-      var newMoves = moves
-      newMoves.push(move)
-      setMoves(newMoves)
-      setMostRecentMove(move.san)
-      setFen(chess.fen());
-
-      var updatedFenList = fenList
-      fenList.push(fen)
-      setFenList(fenList)
-      getCandidateMovesByPreviousMoves(moves)
-    }
-  };
 
   return (
     <div style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
