@@ -20,7 +20,7 @@ function SingleGameChessboard({chess, fen, setFen, movesInGame}) {
     }
 
     const nextMove = (e) => {
-        if (turnNum == movesInGame.length - 1) {
+        if (turnNum == movesInGame.length) {
             return;
         }
         console.log("NEXT - turnNum = ", turnNum);
