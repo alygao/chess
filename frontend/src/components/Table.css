@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@800&display=swap');
+
+th, td{
+    text-align: center;
+    font-family: Rockwell;
+    color: #FFFFFF
+
+}
+
+th{
+    background-color: #a5afb6;
+    color: #FFFFFF;
+    font-family: Raleway;
+    font-weight: bold;
+}
+
+tr {
+    border-radius: 30px;
+    color: #FFFFFF
+}
+
+table {
+    border-collapse: collapse;
+    border-radius: 30px;
+    border: none;
+    color: #FFFFFF
+}
