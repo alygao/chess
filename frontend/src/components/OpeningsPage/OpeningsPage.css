@@ -1,11 +1,11 @@
-.games-page-main-container {
+.openings-page-main-container {
     display: flex;
     justify-content: center;
     flex-direction: column;
     text-align: center;
 }
 
-.games-page-main-content {
+.openings-page-main-content {
     display: flex;
     flex-direction: row;
     text-align: center;

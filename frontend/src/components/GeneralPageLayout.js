@@ -8,9 +8,8 @@ import chessIcon from "../images/chess_icon.svg";
 // import Button from "@material-ui/core/Button";
 // import { ThemeProvider } from "@material-ui/core/styles";
 
-// import Dashboard from "./dashboard/Dashboard";
-// import ShipmentsPage from "./shipments/ShipmentsPage"
 
+import GamesPage from "./GamesPage/GamesPage";
 import OpeningsPage from "./OpeningsPage/OpeningsPage";
 
 // import PropTypes from "prop-types";
@@ -73,7 +72,7 @@ function GeneralPageLayout() {
           </div>
         </div>
         <div className="general-page-content">
-          {/* {isGamesPageShown && <GamesPage/>} */}
+          {isGamesPageShown && <GamesPage/>}
           {isOpeningsPageShown && <OpeningsPage/>}
           {/* {isEventsPageShown && <EventsPage/>} */}
         </div>

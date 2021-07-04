@@ -43,9 +43,9 @@ function OpeningsPage() {
     const [fenList, setFenList] = useState([fen])
 
     return (
-        <div className="games-page-main-container">
+        <div className="openings-page-main-container">
             {/* <h1>GAMES PAGE</h1> */}
-            <div className="games-page-main-content">
+            <div className="openings-page-main-content">
                 <GameStepsPanel chess={chess} setChess={setChess} moves={moves} mostRecentMove={mostRecentMove} setMoves={setMoves} fen={fen} setFen={setFen} setMostRecentMove={setMostRecentMove} moves={moves} fenList={fenList} setFenList={setFenList} getCandidateMovesByPreviousMoves={getCandidateMovesByPreviousMoves}/>
                 <ChessBoard moves={moves} getCandidateMovesByPreviousMoves={getCandidateMovesByPreviousMoves} setMoves={setMoves} setMostRecentMove={setMostRecentMove}
                     chess={chess} fen={fen} setFen={setFen} fenList={fenList} setFenList={setFenList}
