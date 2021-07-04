@@ -26,7 +26,7 @@ public class GameDao {
 	@Autowired
 	private DataSource dataSource;
 
-	private static String WIN_STATS_SQL = "SELECT SUM(CASE WHEN winner = 'w' THEN 1 ELSE 0 END) AS numWhiteWins, SUM(CASE WHEN winner = 'b' THEN 1 ELSE 0 END) AS numBlackWins, COUNT(*) AS numGames FROM ( SELECT gid, GROUP_CONCAT(DISTINCT moveString ORDER BY turnNum SEPARATOR '-') AS moves FROM `Move` GROUP BY gid HAVING moves LIKE ?) GamesWithMove, Game WHERE GamesWithMove.gid = Game.gid";
+	private static String WIN_STATS_SQL = "SELECT SUM(CASE WHEN winner = 'w' THEN 1 ELSE 0 END) AS numWhiteWins, SUM(CASE WHEN winner = 'b' THEN 1 ELSE 0 END) AS numBlackWins, SUM(CASE WHEN winner = 't' THEN 1 ELSE 0 END) AS numDraws, COUNT(*) AS numGames FROM ( SELECT gid, GROUP_CONCAT(DISTINCT moveString ORDER BY turnNum SEPARATOR '-') AS moves FROM `Move` GROUP BY gid HAVING moves LIKE ?) GamesWithMove, Game WHERE GamesWithMove.gid = Game.gid";
 	// private static String GAMES_WITH_OPENING_SQL = "SELECT gid, moves FROM
 	// (SELECT gid, GROUP_CONCAT(DISTINCT moveString ORDER BY turnNum SEPARATOR '-')
 	// AS moves FROM `Move` GROUP BY gid HAVING moves LIKE ?) GamesWithOpening";
@@ -46,6 +46,7 @@ public class GameDao {
 			if (rs.next()) {
 				stats.setNumWhiteWins(rs.getInt("numWhiteWins"));
 				stats.setNumBlackWins(rs.getInt("numBlackWins"));
+				stats.setNumDraws(rs.getInt("numDraws"));
 				stats.setNumGames(rs.getInt("numGames"));
 			}
 			return stats;

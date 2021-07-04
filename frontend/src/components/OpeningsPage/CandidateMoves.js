@@ -33,16 +33,16 @@ function CandidateMoves({ moves, candidateMoves, handleMove }) {
       ),
     },
     {
-      Header: "Game ID",
-      accessor: "gid",
-    },
-    {
       Header: "White Wins",
       accessor: "winStats.numWhiteWins",
     },
     {
       Header: "Black Wins",
       accessor: "winStats.numBlackWins",
+    },
+    {
+      Header: "Draws",
+      accessor: "winStats.numDraws",
     },
   ]);
 
