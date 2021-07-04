@@ -34,7 +34,7 @@ public class EventController {
 		return ResponseEntity.ok().body(events);
 	}
 
-	@GetMapping("/")
+	@GetMapping("/games")
 	public ResponseEntity<List<Game>> getGames(@RequestParam("name") int name) {
 		List<Game> games = eventService.getGames(name, true, true, true);
 		if (players == null) {
