@@ -7,6 +7,8 @@ public class Game {
 	int gid;
 	char winner;
 	String date;
+	int eid;
+	
 	Player white, black;
 	List<Move> moves;
 
@@ -14,10 +16,11 @@ public class Game {
 		moves = new ArrayList<>();
 	}
 
-	public Game(int gid, char winner, String date) {
+	public Game(int gid, char winner, String date, int eid) {
 		this.gid = gid;
 		this.winner = winner;
 		this.date = date;
+		this.eid = eid;
 		moves = new ArrayList<>();
 	}
 
@@ -69,5 +72,21 @@ public class Game {
 	public void setGid(int gid) {
 		this.gid = gid;
 	}
+	
+	public int getEid() {
+		return eid;
+	}
+
+	public void setEid(int eid) {
+		this.eid = eid;
+	}
+
+	@Override
+	public String toString() {
+		return "Game [gid=" + gid + ", winner=" + winner + ", date=" + date + ", eid=" + eid + ", white=" + white
+				+ ", black=" + black + ", moves=" + moves + "]";
+	}
+
+	
 	
 }

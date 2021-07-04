@@ -1,6 +1,7 @@
 package chess.controllers;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -43,7 +44,7 @@ public class GameController {
 	@GetMapping("/candidate_moves")
 	// Returns possible next moves
 	// Only winStats, turnNum, and moveString are valid in the returned list of moves
-	public ResponseEntity<List<Move>> getCandidateMoves(@RequestParam("moveString") String moveString) {
+	public ResponseEntity<List<Move>> getCandidateMoves(@RequestParam("previousMovesString") String moveString) {
 		// Default is to return top N most common moves with win rate
 		// todo: do we want to change this? might want to sort on something like elo
 		// todo: add stats for average elo of players for each move?
@@ -67,6 +68,22 @@ public class GameController {
 	// Add more parameters as needed
 	public ResponseEntity<List<Game>> getGames(@RequestParam(name = "playerId", required = false) int playerId) {
 		List<Game> result = gameService.getGames(playerId);
+		if (result == null) {
+			return ResponseEntity.badRequest().body(null);
+		}
+		return ResponseEntity.ok().body(result);
+	}
+	
+	@GetMapping("/filtered")
+	// Returns games filtered by player name, draw/black/white win
+	public ResponseEntity<List<Game>> getGames(
+			@RequestParam("playerName") String playerName, 
+			@RequestParam("viewBlackWinGames") boolean viewBlackWinGames,
+			@RequestParam("viewWhiteWinGames") boolean viewWhiteWinGames,
+			@RequestParam("viewDrawGames") boolean viewDrawGames
+			) {
+		System.out.println("GETTING GAMES..............");
+		List<Game> result = gameService.getGames(playerName, viewBlackWinGames, viewWhiteWinGames, viewDrawGames);
 		if (result == null) {
 			return ResponseEntity.badRequest().body(null);
 		}

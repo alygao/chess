@@ -7,6 +7,8 @@ INSERT INTO `Game` VALUES (1, 'b', '2010-10-10', 1);
 INSERT INTO `Game` VALUES (2, 'w', '2011-11-11', 2);
 INSERT INTO `Game` VALUES (3, 'w', '2011-11-11', 1);
 INSERT INTO `Game` VALUES (4, 'b', '2011-11-11', 2);
+INSERT INTO `Game` VALUES (5, 't', '2011-11-11', 1);
+INSERT INTO `Game` VALUES (6, 't', '2011-11-11', 2);
 
 INSERT INTO `Move` VALUES (1, 0, 'd4', 'very nice', 'd2', 'd4', 'P');
 INSERT INTO `Move` VALUES (1, 1, 'd5', 'wow', 'd7', 'd5', 'P');
