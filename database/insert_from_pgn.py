@@ -11,7 +11,7 @@ date_regex = re.compile('^\d{4}\.(0[1-9]|1[012])\.(0[1-9]|[12][0-9]|3[01])$')
 
 pgn = open('tenth_cleaned.pgn', encoding='iso-8859-1')
 
-INSERT_GAME_SQL = 'INSERT INTO `Game` VALUES (NULL, %s, %s)'
+INSERT_GAME_SQL = 'INSERT INTO `Game` VALUES (NULL, %s, %s, %s)'
 INSERT_PLAYER_SQL  = 'INSERT INTO `Player` VALUES (NULL, %s, NULL, NULL)'
 INSERT_PLAYEDIN_SQL = 'INSERT INTO `PlayedIn` VALUES (%s, %s, %s, %s)'
 INSERT_EVENT_SQL = 'INSERT INTO `Event` VALUES (NULL, %s)'
@@ -62,7 +62,14 @@ def insert_record(g):
   if date_regex.search(h['Date']) is not None:
     date = h['Date']
   
-  data = (winner, date)
+  event = h['Event']
+  if len(event) > 0:
+    if event not in event_ids:
+      data = (event,)
+      cursor.execute(INSERT_EVENT_SQL, data)
+      event_ids[event] = cursor.lastrowid
+
+  data = (winner, date, event_ids[event])
   cursor.execute(INSERT_GAME_SQL, data)
   gid = cursor.lastrowid
 
@@ -94,14 +101,6 @@ def insert_record(g):
   data = (player_ids[black], gid, belo, False)
   cursor.execute(INSERT_PLAYEDIN_SQL, data)
 
-  event = h['Event']
-  if len(event) > 0:
-    if event not in event_ids:
-      data = (event,)
-      cursor.execute(INSERT_EVENT_SQL, data)
-      event_ids[event] = cursor.lastrowid
-    data = (event_ids[event], gid)
-    cursor.execute(INSERT_EVENTGAME_SQL, data)
 
   insert_moves(g, gid)
   cnx.commit()
@@ -121,7 +120,7 @@ def main():
     f = chess.pgn.read_game(pgn)
     if i % 100 == 0:
       print(i)
-    if i > 10000: # change this line to fill db with more/less games
+    if i > 1000: # change this line to fill db with more/less games
       break
   print("num variations:", num_variations)
   print("num result missing:", num_result_missing)
