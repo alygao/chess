@@ -21,7 +21,7 @@ CREATE TABLE `Game` (
   `gid` INT NOT NULL AUTO_INCREMENT,
   `winner` CHAR(1) NOT NULL CHECK(`winner` = 'b' OR `winner` = 'w' OR `winner` = 't'),
   `date` DATE DEFAULT NULL,
-  `eid` INT NOT NULL,
+  `eid` INT DEFAULT NULL,
   PRIMARY KEY (`gid`),
   FOREIGN KEY(`eid`) REFERENCES `Event`(`eid`)
 );
