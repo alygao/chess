@@ -35,7 +35,7 @@ To run `populate_db.sh`:
 
 The provided versions are what we used during development. We cannot guarantee that lower versions of these dependencies will still work.
 
-### How to Populate your DB with Real Data
+## How to Populate your DB with Real Data
 
 1. Download the pgn file: https://drive.google.com/u/0/uc?id=0Bw0y3jV73lx_NElnLWVlNG9KNkU&export=download
 2. Extract the file and make sure it is in this directory
@@ -44,9 +44,35 @@ The provided versions are what we used during development. We cannot guarantee t
 which determines how many games to extract. It is set to 10000 right now.
 5. Run `bash populate_db.sh`. You should probably look at the script to read what it does
 
-### Features Currently Supported
+## Features Currently Supported
 
-Our DB current supports features to store games, users/players, and associated moves and events. Our front-end application currently supports the functionality to register new players and add them to our database through the UI.
+#### Feature 1: Displaying all past played games
+
+Here, we query the database for all past games played, with all filters set to true, which allows for every single game to be returned. The files that contain the implementation are: all files within `GamesPage` under `Frontend` (which contains our UI code), `GameController` under `backend/src/main/java/chess/controllers`, `GameDao` under `backend/src/main/java/chess/dao`, and `GameService` under `backend/src/main/java/chess/services`.
+
+#### Feature 2: Filtering games based on which colour won, player name, draw
+
+Here, we query the database for games that match our specific criteria, which the user sets. The implementation files are the same as feature 1, as the files target all game-related features.
+
+#### Feature 3: Select specific game to display
+
+Here, we query the database for all the moves of the specific game that the user has chosen to view. This views the game in much closer detail that the previous pages. The files that contain the implementation are the same as feature 1 and 2. More specifically, the UI page is `SingleGamePage` in `GamesPage` under `Frontend`, which handles the display and makes the corresponding calls to the back-end.
+
+#### Feature 4: Show possible openings (next moves) for a given chess board state
+
+Here, we allow users to move pieces on the board to return next possible moves that have been played in past games for the given state. The files that contain the implementation are: all files within `OpeningsPage` under `Frontend` (which contains our UI code), `GameController` under `backend/src/main/java/chess/controllers`, `GameDao` under `backend/src/main/java/chess/dao`, and `GameService` under `backend/src/main/java/chess/services`.
+
+#### Feature 5: Displaying possible openings by order of number of wins for the next particular move
+
+The user can position the board however they wish, and at each point in time for each state, a list of moves will be returned. The list of moves are ordered by number of total wins for past games which included the particular opening. The implementation files are the same as feature 4, as they are both supporting the Openings page.
+
+#### Feature 6: Display all events in the database
+
+Here, we are displaying all events that are in the database (including ones for which games were not played). From here, users will have the option to view an event to see the list of games played for it. The implementation files are: all files within `EventsPage` under `Frontend` (which contains our UI code), `EventController` under `backend/src/main/java/chess/controllers`, `EventDao` under `backend/src/main/java/chess/dao`, and `EventService` under `backend/src/main/java/chess/services`.
+
+#### Feature 7: Display all games within an event
+
+Here, we are displaying all games that are part of an event. From here, users will have the option to view a game in closer detail, which will re-route back to feature 3. The implementation files are the same as feature 6, as they are both meant to support the `events` features of the app.
 
 ## How to Run the Application
 
