@@ -10,24 +10,24 @@ INSERT INTO `Game` VALUES (4, 'b', '2011-11-11', 2);
 INSERT INTO `Game` VALUES (5, 't', '2011-11-11', 1);
 INSERT INTO `Game` VALUES (6, 't', '2011-11-11', 2);
 
-INSERT INTO `Move` VALUES (1, 0, 'd4', 'very nice', 'd2', 'd4', 'P');
-INSERT INTO `Move` VALUES (1, 1, 'd5', 'wow', 'd7', 'd5', 'P');
-INSERT INTO `Move` VALUES (1, 2, 'c4', 'wow', 'c2', 'c4', 'P');
-INSERT INTO `Move` VALUES (1, 3, 'e6', 'wow', 'e7', 'e6', 'P');
-INSERT INTO `Move` VALUES (1, 4, 'd3', 'wow', 'd1', 'd3', 'Q');
-INSERT INTO `Move` VALUES (1, 5, 'd7', 'wow', 'e8', 'd7', 'K');
+INSERT INTO `Move` VALUES (1, 0, 'd4', 'very nice', 'd4', 'd2', 'P');
+INSERT INTO `Move` VALUES (1, 1, 'd5', 'wow', 'd5', 'd7', 'P');
+INSERT INTO `Move` VALUES (1, 2, 'c4', 'wow', 'c4', 'c2', 'P');
+INSERT INTO `Move` VALUES (1, 3, 'e6', 'wow', 'e6', 'e7', 'P');
+INSERT INTO `Move` VALUES (1, 4, 'd3', 'wow', 'd3', 'd1', 'Q');
+INSERT INTO `Move` VALUES (1, 5, 'd7', 'wow', 'd7', 'e8', 'K');
 
-INSERT INTO `Move` VALUES (2, 0, 'd4', 'very nice', 'd2', 'd4', 'P');
-INSERT INTO `Move` VALUES (2, 1, 'd5', 'wow', 'd7', 'd5', 'P');
-INSERT INTO `Move` VALUES (2, 2, 'c4', 'wow', 'c2', 'c4', 'P');
-INSERT INTO `Move` VALUES (2, 3, 'a5', 'nice', 'a7', 'a5', 'P');
-INSERT INTO `Move` VALUES (2, 4, 'f4', 'wow', 'c1', 'f4', 'B');
-INSERT INTO `Move` VALUES (2, 5, 'a7', 'wow', 'a8', 'a7', 'R');
+INSERT INTO `Move` VALUES (2, 0, 'd4', 'very nice', 'd4', 'd2', 'P');
+INSERT INTO `Move` VALUES (2, 1, 'd5', 'wow', 'd5', 'd7', 'P');
+INSERT INTO `Move` VALUES (2, 2, 'c4', 'wow', 'c4', 'c2', 'P');
+INSERT INTO `Move` VALUES (2, 3, 'a5', 'nice', 'a5', 'a7', 'P');
+INSERT INTO `Move` VALUES (2, 4, 'f4', 'wow', 'f4', 'c1', 'B');
+INSERT INTO `Move` VALUES (2, 5, 'a7', 'wow', 'a7', 'a8', 'R');
 
-INSERT INTO `Move` VALUES (3, 0, 'a4', 'very nice', 'a2', 'a4', 'P');
-INSERT INTO `Move` VALUES (3, 1, 'h5', 'very nice', 'h7', 'h5', 'P');
-INSERT INTO `Move` VALUES (3, 2, 'a3', 'very nice', 'a1', 'a3', 'R');
-INSERT INTO `Move` VALUES (3, 3, 'f6', 'very nice', 'g8', 'f6', 'K');
+INSERT INTO `Move` VALUES (3, 0, 'a4', 'very nice', 'a4', 'a2', 'P');
+INSERT INTO `Move` VALUES (3, 1, 'h5', 'very nice', 'h5', 'h7', 'P');
+INSERT INTO `Move` VALUES (3, 2, 'a3', 'very nice', 'a3', 'a1', 'R');
+INSERT INTO `Move` VALUES (3, 3, 'f6', 'very nice', 'f6', 'g8', 'K');
 
 
 

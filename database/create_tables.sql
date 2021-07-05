@@ -2,13 +2,12 @@ CREATE SCHEMA IF NOT EXISTS chess;
 
 USE chess;
 
-DROP TABLE IF EXISTS `EventGames`; 
 DROP TABLE IF EXISTS `PlayerFavourited`; 
 DROP TABLE IF EXISTS `PlayedIn`; 
 DROP TABLE IF EXISTS `Player`; 
-DROP TABLE IF EXISTS `Event`; 
 DROP TABLE IF EXISTS `Move`; 
 DROP TABLE IF EXISTS `Game`; 
+DROP TABLE IF EXISTS `Event`; 
 
 
 CREATE TABLE `Event` (
@@ -64,11 +63,3 @@ CREATE TABLE `PlayerFavourited` (
   FOREIGN KEY(`gid`) REFERENCES `Game`(`gid`),
   FOREIGN KEY(`username`) REFERENCES `Player`(`username`)
 );
-
--- CREATE TABLE `EventGames` (
---   `eid` INT NOT NULL,
---   `gid` INT NOT NULL,
---   PRIMARY KEY (`eid`, `gid`),
---   FOREIGN KEY(`gid`) REFERENCES `Game`(`gid`),
---   FOREIGN KEY(`eid`) REFERENCES `Event`(`eid`)
--- );
