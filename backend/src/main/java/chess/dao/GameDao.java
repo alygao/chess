@@ -155,7 +155,7 @@ public class GameDao {
 
 		try (Connection conn = this.dataSource.getConnection();
 				PreparedStatement statement = conn.prepareStatement(SQL_STRING)) {
-			statement.setString(1, "%" + playerName + "%");
+			statement.setString(1, playerName + "%");
 			ResultSet rs = statement.executeQuery();
 			List<Game> result = new ArrayList<>();
 			while (rs.next()) {

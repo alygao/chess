@@ -2,8 +2,8 @@ CREATE SCHEMA IF NOT EXISTS chess;
 
 USE chess;
 
+ALTER TABLE `Game`DROP INDEX `FilteredGames`;
 DROP TABLE IF EXISTS `PlayerFavourited`; 
-
 DROP TABLE IF EXISTS `PlayedIn`; 
 DROP TABLE IF EXISTS `Player`; 
 DROP TABLE IF EXISTS `Move`; 
@@ -64,3 +64,6 @@ CREATE TABLE `PlayerFavourited` (
   FOREIGN KEY(`gid`) REFERENCES `Game`(`gid`),
   FOREIGN KEY(`username`) REFERENCES `Player`(`username`)
 );
+
+CREATE INDEX `FilteredGames`
+ON `Game` (gid, winner);
