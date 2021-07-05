@@ -83,6 +83,7 @@ public class EventDao {
 			}
 			return result;
 		} catch (SQLException e) {
+			System.out.println("bobby");
 			e.printStackTrace();
 		}
 		return null;

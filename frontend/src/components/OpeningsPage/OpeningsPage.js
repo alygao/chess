@@ -20,20 +20,24 @@ function OpeningsPage() {
 
     useEffect(() => {
         getCandidateMovesByPreviousMoves([]);
-      }, []);
+    }, []);
 
     const getCandidateMovesByPreviousMoves = (moves) => {
         let previousMovesString = "";
-        for (let i = 0; i < moves.length; i++) { 
-            previousMovesString = previousMovesString.concat(moves[i].to)
+        for (let i = 0; i < moves.length; i++) {
+            if (previousMovesString.length > 0) {
+                previousMovesString = previousMovesString.concat("-" + moves[i].san);
+            } else {
+                previousMovesString = previousMovesString.concat(moves[i].san);
+            }
         }
-        console.log("previousMovesString = ", previousMovesString);
+        console.log("previousMovesString = '" + previousMovesString + "'");
         axios.get("http://localhost:8080/v1/game/candidate_moves", { params: { previousMovesString } }).then((res) => {
-          const candidateMoves = res.data;
-          setCandidateMoves(candidateMoves);
-          console.log(candidateMoves);
+            const candidateMoves = res.data;
+            setCandidateMoves(candidateMoves);
+            console.log(candidateMoves);
         });
-      };
+    };
 
     const [chess, setChess] = useState(
         new Chess("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1")
@@ -42,16 +46,31 @@ function OpeningsPage() {
     const [fen, setFen] = useState(chess.fen());
     const [fenList, setFenList] = useState([fen])
 
+    const handleMove = (move) => {
+        move = chess.move(move);
+        if (move) {
+            console.log(move)
+            var newMoves = moves
+            newMoves.push(move)
+            setMoves(newMoves)
+            setMostRecentMove(move.san)
+            setFen(chess.fen());
+
+            var updatedFenList = fenList
+            fenList.push(fen)
+            setFenList(fenList)
+            getCandidateMovesByPreviousMoves(moves)
+        }
+    };
+
     return (
         <div className="openings-page-main-container">
             {/* <h1>GAMES PAGE</h1> */}
             <div className="openings-page-main-content">
-                <GameStepsPanel chess={chess} setChess={setChess} moves={moves} mostRecentMove={mostRecentMove} setMoves={setMoves} fen={fen} setFen={setFen} setMostRecentMove={setMostRecentMove} moves={moves} fenList={fenList} setFenList={setFenList} getCandidateMovesByPreviousMoves={getCandidateMovesByPreviousMoves}/>
-                <ChessBoard moves={moves} getCandidateMovesByPreviousMoves={getCandidateMovesByPreviousMoves} setMoves={setMoves} setMostRecentMove={setMostRecentMove}
-                    chess={chess} fen={fen} setFen={setFen} fenList={fenList} setFenList={setFenList}
-                />
+                <GameStepsPanel chess={chess} setChess={setChess} moves={moves} mostRecentMove={mostRecentMove} setMoves={setMoves} fen={fen} setFen={setFen} setMostRecentMove={setMostRecentMove} moves={moves} fenList={fenList} setFenList={setFenList} getCandidateMovesByPreviousMoves={getCandidateMovesByPreviousMoves} />
+                <ChessBoard fen={fen} handleMove={handleMove} />
             </div>
-            <CandidateMoves moves={moves} candidateMoves={candidateMoves}/>
+            <CandidateMoves moves={moves} candidateMoves={candidateMoves} handleMove={handleMove} />
         </div>
     )
 }

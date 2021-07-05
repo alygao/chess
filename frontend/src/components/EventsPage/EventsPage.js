@@ -3,7 +3,7 @@ import "../Table.css";
 import EventsTable from './EventsTable';
 import React, { useEffect, useState } from "react";
 
-function EventsPage() {
+function EventsPage({setIsSingleEventShown, setCurrEventId}) {
 
     const [events, setEvents] = useState([]);
 
@@ -21,7 +21,7 @@ function EventsPage() {
     return (
         <>
             <h1>Events</h1>
-            <EventsTable data={events} />
+            <EventsTable data={events} setIsSingleEventShown={setIsSingleEventShown} setCurrEventId={setCurrEventId}/>
         </>
 
     )

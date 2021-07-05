@@ -18,7 +18,7 @@ function GeneralGamesPage({ isSingleEventShown, setIsSingleEventShown, setIsSing
         />
       ) : (
         <EventsPage
-            setIsSingleGameShown={setIsSingleEventShown}
+            setIsSingleEventShown={setIsSingleEventShown}
             setCurrEventId={setCurrEventId}
         />
       )}

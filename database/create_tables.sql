@@ -3,6 +3,7 @@ CREATE SCHEMA IF NOT EXISTS chess;
 USE chess;
 
 DROP TABLE IF EXISTS `PlayerFavourited`; 
+
 DROP TABLE IF EXISTS `PlayedIn`; 
 DROP TABLE IF EXISTS `Player`; 
 DROP TABLE IF EXISTS `Move`; 
@@ -20,7 +21,7 @@ CREATE TABLE `Game` (
   `gid` INT NOT NULL AUTO_INCREMENT,
   `winner` CHAR(1) NOT NULL CHECK(`winner` = 'b' OR `winner` = 'w' OR `winner` = 't'),
   `date` DATE DEFAULT NULL,
-  `eid` INT NOT NULL,
+  `eid` INT DEFAULT NULL,
   PRIMARY KEY (`gid`),
   FOREIGN KEY(`eid`) REFERENCES `Event`(`eid`)
 );

@@ -11,10 +11,13 @@ function SingleEventPage({isSingleEventShown, setIsSingleGameShown, currEventId,
       }, []);
 
     const getEvents = (eid) => {
+        console.log(eid);
         axios.get("http://localhost:8080/v1/events/games", { params: { eid } }).then((res) => {
         const eventData = res.data;
         setEvents(eventData);
         });
+
+        console.log("finish")
     };
 
     // const returnToEventsPage = () => {

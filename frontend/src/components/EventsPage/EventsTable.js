@@ -7,15 +7,15 @@ import Button from "@material-ui/core/Button";
 import EventsTableTemplate from './EventsTableTemplate'
 
 
-function GamesTable({data, setIsSingleGameShown, setCurrGameId}) {
+function GamesTable({data, setIsSingleEventShown, setCurrEventId}) {
     const columns = React.useMemo(() => [
         {
-          Header: "Move",
-          accessor: "moveString",
+          Header: "Event Name",
+          accessor: "name",
         },
         {
-          Header: "Game ID",
-          accessor: "gid",
+          Header: "Event ID",
+          accessor: "eid",
         }, {
                 Header: " ",
                 Cell: () => (
@@ -37,7 +37,7 @@ function GamesTable({data, setIsSingleGameShown, setCurrGameId}) {
       );
 
     return (
-        <EventsTableTemplate columns={columns} data={data} setIsSingleGameShown={setIsSingleGameShown} setCurrGameId={setCurrGameId}/>
+        <EventsTableTemplate columns={columns} data={data} setIsSingleEventShown={setIsSingleEventShown} setCurrEventId={setCurrEventId}/>
     )
 }
 

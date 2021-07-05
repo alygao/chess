@@ -1,3 +1,4 @@
 /.metadata/
 database/*.pgn
 database/pgn-extract
+.DS_store
