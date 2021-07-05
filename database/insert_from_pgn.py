@@ -110,19 +110,25 @@ def main():
   i = 0
   num_variations = 0
   num_result_missing = 0
+  num_exceptions = 0
   while f is not None:
     i += 1
-    result = insert_record(f)
-    if result == 'v':
-      num_variations += 1
-    elif result == 'r':
-      num_result_missing += 1
+    try:
+      result = insert_record(f)
+      if result == 'v':
+        num_variations += 1
+      elif result == 'r':
+        num_result_missing += 1
+    except Exception as e:
+      print(e)
+      num_exceptions += 1
     f = chess.pgn.read_game(pgn)
     if i % 100 == 0:
       print(i)
-    if i > 1000: # change this line to fill db with more/less games
+    if i > 10000: # change this line to fill db with more/less games
       break
   print("num variations:", num_variations)
   print("num result missing:", num_result_missing)
+  print("num exceptions:", num_exceptions)
 
 main()
