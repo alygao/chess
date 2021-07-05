@@ -66,4 +66,4 @@ CREATE TABLE `PlayerFavourited` (
 );
 
 CREATE INDEX `FilteredGames`
-ON `Game` (gid, winner);
+ON `Game` (winner);
