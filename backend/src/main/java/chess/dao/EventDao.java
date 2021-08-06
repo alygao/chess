@@ -24,7 +24,7 @@ public class EventDao {
 	private DataSource dataSource;
 	
 	private static String SELECT_SQL = "SELECT eid, name FROM EVENT";
-	private static String GAME_WITH_PLAYER_NAME_SELECT_SQL = "SELECT * FROM Game WHERE eid = ?";
+	private static String GAME_WITH_EID_SELECT_SQL = "SELECT * FROM Game WHERE eid = ?";
 	private static String PLAYERS_IN_GAME_SELECT_SQL = "SELECT p.pid, p.name, p.username, pi.elo, pi.isWhite FROM Player p INNER JOIN PlayedIn pi ON p.pid = pi.pid WHERE pi.gid = ?";
 
 	public List<Event> getEvents() {
@@ -48,7 +48,7 @@ public class EventDao {
 	public List<Game> getGames(int eid) {
 		
 		try (Connection conn = this.dataSource.getConnection();
-				PreparedStatement statement = conn.prepareStatement(GAME_WITH_PLAYER_NAME_SELECT_SQL)){
+				PreparedStatement statement = conn.prepareStatement(GAME_WITH_EID_SELECT_SQL)){
 			statement.setInt(1, eid);
 			ResultSet rs = statement.executeQuery();
 			List<Game> result = new ArrayList<>();
