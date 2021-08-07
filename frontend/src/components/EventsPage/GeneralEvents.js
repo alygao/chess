@@ -1,29 +1,41 @@
 import EventsPage from "./EventsPage";
 import SingleEventPage from "./SingleEvent";
+import SingleGamePage from "../GamesPage/SingleGamePage";
 
 import { useState } from "react";
 
-function GeneralGamesPage({ isSingleEventShown, setIsSingleEventShown, setIsSingleGameShown, setDefaultValue}) {
+function GeneralEvents({ isSingleEventShown, setIsSingleEventShown, isSingleGameShown, setIsSingleGameShown, setDefaultValue}) {
   
-    const [currEventId, setCurrEventId] = useState(-1);
+  const [currEventId, setCurrEventId] = useState(-1);
+  const [currGameId, setCurrGameId] = useState(-1);
+  let component = <div></div>
+
+  if (isSingleGameShown) {
+    component = 
+      <SingleGamePage
+        setIsSingleGameShown={setIsSingleGameShown}
+        currGameId={currGameId}
+      />
+  } else if (isSingleEventShown) {
+    component = 
+      <SingleEventPage
+        setIsSingleGameShown={setIsSingleGameShown}
+        currEventId={currEventId}
+        isSingleEventShown={isSingleEventShown}
+        setCurrGameId={setCurrGameId}
+      />
+  } else {
+    component = 
+      <EventsPage
+          setIsSingleEventShown={setIsSingleEventShown}
+          setIsSingleGameShown={setIsSingleGameShown}
+          setCurrEventId={setCurrEventId}
+      />
+  }
 
   return (
-    <>
-      {isSingleEventShown ? (
-        <SingleEventPage
-            setIsSingleGameShown={setIsSingleGameShown}
-            currEventId={currEventId}
-            isSingleEventShown={isSingleEventShown}
-            setDefaultValue={setDefaultValue}
-        />
-      ) : (
-        <EventsPage
-            setIsSingleEventShown={setIsSingleEventShown}
-            setCurrEventId={setCurrEventId}
-        />
-      )}
-    </>
-  );
+    <div>{component}</div>
+  )
 }
 
-export default GeneralGamesPage;
+export default GeneralEvents;

@@ -16,9 +16,9 @@ function GeneralPageLayout() {
   const [isGamesPageShown, setGamesPageShown] = useState(true);
   const [isOpeningsPageShown, setOpeningsPageShown] = useState(false);
   const [isEventsPageShown, setEventsPageShown] = useState(false);
-  const [ isSingleGameShown, setIsSingleGameShown] = useState(false);
-  const [ isSingleEvemtShown, setIsSingleEventShown] = useState(false);
-  const [ defaultValue, setDefaultValue] = useState(-1);
+  const [isSingleGameShown, setIsSingleGameShown] = useState(false);
+  const [isSingleEvemtShown, setIsSingleEventShown] = useState(false);
+  const [defaultValue, setDefaultValue] = useState(-1);
   
 
   // const history = useHistory();
@@ -83,7 +83,7 @@ function GeneralPageLayout() {
         <div className="general-page-content">
           {isGamesPageShown && <GeneralGamesPage isSingleGameShown={isSingleGameShown} setIsSingleGameShown={setIsSingleGameShown} defaultValue={defaultValue}/>}
           {isOpeningsPageShown && <OpeningsPage/>}
-          {isEventsPageShown && <GeneralEventsPage isSingleEventShown={isSingleEvemtShown} setIsSingleEventShown={setIsSingleEventShown} setIsSingleGameShown={setIsSingleGameShown} setDefaultValue={setDefaultValue} />}
+          {isEventsPageShown && <GeneralEventsPage isSingleEventShown={isSingleEvemtShown} setIsSingleEventShown={setIsSingleEventShown} isSingleGameShown={isSingleGameShown} setIsSingleGameShown={setIsSingleGameShown} setDefaultValue={setDefaultValue} />}
         </div>
     </div>
   );

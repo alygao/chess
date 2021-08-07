@@ -2,22 +2,19 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import GamesTable from '../GamesPage/GamesTable';
 
-function SingleEventPage({isSingleEventShown, setIsSingleGameShown, currEventId, setDefaultValue}) {
-    const [events, setEvents] = useState([]);
-    
+function SingleEventPage({isSingleEventShown, setIsSingleGameShown, currEventId, setCurrGameId}) {
+    const [games, setGames] = useState([]);
 
     useEffect(() => {
-        getEvents(currEventId);
+        getGames(currEventId);
       }, []);
 
-    const getEvents = (eid) => {
+    const getGames = (eid) => {
         console.log(eid);
         axios.get("http://localhost:8080/v1/events/games", { params: { eid } }).then((res) => {
-        const eventData = res.data;
-        setEvents(eventData);
+        const gamesData = res.data;
+        setGames(gamesData);
         });
-
-        console.log("finish")
     };
 
     // const returnToEventsPage = () => {
@@ -27,7 +24,7 @@ function SingleEventPage({isSingleEventShown, setIsSingleGameShown, currEventId,
     return (
         <>
             <h1>Event #{currEventId}</h1>
-            <GamesTable data={events} setIsSingleGameShown={setIsSingleGameShown} setCurrGameId={setDefaultValue}/>
+            <GamesTable data={games} setIsSingleGameShown={setIsSingleGameShown} setCurrGameId={setCurrGameId}/>
         </>
     )
 }
