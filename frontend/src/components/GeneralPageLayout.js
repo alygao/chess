@@ -7,18 +7,18 @@ import chessIcon from "../images/chess_icon.svg";
 import GeneralGamesPage from "./GamesPage/GeneralGamesPage";
 import OpeningsPage from "./OpeningsPage/OpeningsPage";
 import GeneralEventsPage from "./EventsPage/GeneralEvents";
-
-// import PropTypes from "prop-types";
-// import { connect } from "react-redux";
-// import { logoutUser } from "../../actions/authActions";
+import GeneralUsersPage from "./UsersPage/GeneralUsersPage";
 
 function GeneralPageLayout() {
   const [isGamesPageShown, setGamesPageShown] = useState(true);
   const [isOpeningsPageShown, setOpeningsPageShown] = useState(false);
   const [isEventsPageShown, setEventsPageShown] = useState(false);
+  const [isUsersPageShown, setUsersPageShown] = useState(false);
+
   const [isSingleGameShown, setIsSingleGameShown] = useState(false);
   const [isSingleEvemtShown, setIsSingleEventShown] = useState(false);
   const [defaultValue, setDefaultValue] = useState(-1);
+  const [currUsername, setCurrUsername] = useState("alyssa123");
   
 
   // const history = useHistory();
@@ -39,6 +39,7 @@ function GeneralPageLayout() {
     setGamesPageShown(true,);
     setOpeningsPageShown(false);
     setEventsPageShown(false);
+    setUsersPageShown(false)
     setIsSingleGameShown(false);
     setIsSingleEventShown(false);
     setDefaultValue(-1);
@@ -49,6 +50,7 @@ function GeneralPageLayout() {
     setGamesPageShown(false);
     setOpeningsPageShown(true);
     setEventsPageShown(false);
+    setUsersPageShown(false)
     setIsSingleGameShown(false);
     setIsSingleEventShown(false);
     setDefaultValue(-1);
@@ -59,6 +61,18 @@ function GeneralPageLayout() {
     setGamesPageShown(false);
     setOpeningsPageShown(false);
     setEventsPageShown(true);
+    setUsersPageShown(false)
+    setIsSingleGameShown(false);
+    setIsSingleEventShown(false);
+    setDefaultValue(-1);
+  };
+
+  const handleUsersPage = (e) => {
+    e.preventDefault();
+    setGamesPageShown(false);
+    setOpeningsPageShown(false);
+    setEventsPageShown(false);
+    setUsersPageShown(true)
     setIsSingleGameShown(false);
     setIsSingleEventShown(false);
     setDefaultValue(-1);
@@ -78,12 +92,16 @@ function GeneralPageLayout() {
             <Link to="/events">
               <li onClick={handleEventsPage}>Events</li>
             </Link>
+            <Link to="/user">
+              <li onClick={handleUsersPage}>Account</li>
+            </Link>
           </div>
         </div>
         <div className="general-page-content">
-          {isGamesPageShown && <GeneralGamesPage isSingleGameShown={isSingleGameShown} setIsSingleGameShown={setIsSingleGameShown} defaultValue={defaultValue}/>}
+          {isGamesPageShown && <GeneralGamesPage isSingleGameShown={isSingleGameShown} setIsSingleGameShown={setIsSingleGameShown} defaultValue={defaultValue} currUsername={currUsername}/>}
           {isOpeningsPageShown && <OpeningsPage/>}
           {isEventsPageShown && <GeneralEventsPage isSingleEventShown={isSingleEvemtShown} setIsSingleEventShown={setIsSingleEventShown} isSingleGameShown={isSingleGameShown} setIsSingleGameShown={setIsSingleGameShown} setDefaultValue={setDefaultValue} />}
+          {isUsersPageShown && <GeneralUsersPage currUsername={currUsername} isSingleGameShown={isSingleGameShown} setIsSingleGameShown={setIsSingleGameShown}/>}
         </div>
     </div>
   );
@@ -91,14 +109,3 @@ function GeneralPageLayout() {
 
 
 export default GeneralPageLayout;
-
-// EmployeePortalPage.propTypes = {
-//   logoutUser: PropTypes.func.isRequired,
-//   auth: PropTypes.object.isRequired,
-// };
-
-// const mapStateToProps = (state) => ({
-//   auth: state.auth,
-// });
-
-// export default connect(mapStateToProps, { logoutUser })(EmployeePortalPage);

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import chess.dao.GameDao;
 import chess.dao.PlayerDao;
+import chess.domain.FavouritedGame;
 import chess.domain.Game;
 import chess.domain.Move;
 import chess.domain.Player;
@@ -52,6 +53,19 @@ public class GameService {
 	public List<Game> getGames(int pid) {
 		// get player and game data
 		return this.gameDao.getGames(pid);
+	}
+	
+	public List<Game> getUserFavouritedGames(String username) {
+		// get player and game data
+		return this.gameDao.getUserFavouritedGames(username);
+	}
+	
+	public void removeUserFavouritedGame(int gid, String username) {
+		this.gameDao.removeUserFavouritedGame(gid, username);
+	}
+	
+	public FavouritedGame addUserFavouritedGame(FavouritedGame favouritedGame) {
+		return this.gameDao.addUserFavouritedGame(favouritedGame);
 	}
 
 	public List<Game> getGames(String playerName, boolean viewBlackWinGames, boolean viewWhiteWinGames,

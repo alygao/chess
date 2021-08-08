@@ -1,5 +1,6 @@
 package chess.controllers;
 
+import java.rmi.ServerException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -7,8 +8,11 @@ import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import chess.domain.CreateUserRequest;
+import chess.domain.FavouritedGame;
 import chess.domain.Game;
 import chess.domain.Move;
 import chess.domain.Player;
@@ -87,6 +92,42 @@ public class GameController {
 			return ResponseEntity.badRequest().body(null);
 		}
 		return ResponseEntity.ok().body(result);
+	}
+	
+	@GetMapping("/user")
+	// gets all user favourited games
+	public ResponseEntity<List<Game>> getUserFavouritedGames(
+			@RequestParam("username") String username
+			) {
+		System.out.println(username);
+		List<Game> result = gameService.getUserFavouritedGames(username);
+		if (result == null) {
+			return ResponseEntity.badRequest().body(null);
+		}
+		return ResponseEntity.ok().body(result);
+	}
+	
+	@DeleteMapping("/user")
+	// remove user favourited game
+	public void removeUserFavouritedGame(
+			@RequestParam("gid") int gid,
+			@RequestParam("username") String username
+			) {
+		System.out.println(username);
+		gameService.removeUserFavouritedGame(gid, username);
+	}
+	
+	@PostMapping(path="/user", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	// remove user favourited game
+	public ResponseEntity<FavouritedGame> addUserFavouritedGame(@RequestBody FavouritedGame newFavouritedGame) {
+		System.out.println(newFavouritedGame.toString());
+		FavouritedGame favouritedGame = gameService.addUserFavouritedGame(newFavouritedGame);
+		
+		if (favouritedGame == null) {
+			return ResponseEntity.badRequest().body(null);
+	    } else {
+	        return new ResponseEntity<>(favouritedGame, HttpStatus.CREATED);
+	    }
 	}
 	
 	@GetMapping("/single")

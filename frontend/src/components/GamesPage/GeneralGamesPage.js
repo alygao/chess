@@ -3,7 +3,7 @@ import SingleGamePage from "./SingleGamePage";
 
 import { useState } from "react";
 
-function GeneralGamesPage({ isSingleGameShown, setIsSingleGameShown, defaultValue }) {
+function GeneralGamesPage({ isSingleGameShown, setIsSingleGameShown, defaultValue, currUsername }) {
   
     const [currGameId, setCurrGameId] = useState(defaultValue);
 
@@ -13,6 +13,7 @@ function GeneralGamesPage({ isSingleGameShown, setIsSingleGameShown, defaultValu
         <SingleGamePage
             setIsSingleGameShown={setIsSingleGameShown}
             currGameId={currGameId}
+            currUsername={currUsername}
         />
       ) : (
         <GamesPage
