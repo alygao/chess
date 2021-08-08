@@ -100,7 +100,7 @@ function GeneralPageLayout() {
         <div className="general-page-content">
           {isGamesPageShown && <GeneralGamesPage isSingleGameShown={isSingleGameShown} setIsSingleGameShown={setIsSingleGameShown} defaultValue={defaultValue} currUsername={currUsername}/>}
           {isOpeningsPageShown && <OpeningsPage/>}
-          {isEventsPageShown && <GeneralEventsPage isSingleEventShown={isSingleEvemtShown} setIsSingleEventShown={setIsSingleEventShown} isSingleGameShown={isSingleGameShown} setIsSingleGameShown={setIsSingleGameShown} setDefaultValue={setDefaultValue} />}
+          {isEventsPageShown && <GeneralEventsPage currUsername={currUsername} isSingleEventShown={isSingleEvemtShown} setIsSingleEventShown={setIsSingleEventShown} isSingleGameShown={isSingleGameShown} setIsSingleGameShown={setIsSingleGameShown} setDefaultValue={setDefaultValue} />}
           {isUsersPageShown && <GeneralUsersPage currUsername={currUsername} isSingleGameShown={isSingleGameShown} setIsSingleGameShown={setIsSingleGameShown}/>}
         </div>
     </div>

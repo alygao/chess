@@ -4,7 +4,7 @@ import SingleGamePage from "../GamesPage/SingleGamePage";
 
 import { useState } from "react";
 
-function GeneralEvents({ isSingleEventShown, setIsSingleEventShown, isSingleGameShown, setIsSingleGameShown, setDefaultValue}) {
+function GeneralEvents({ isSingleEventShown, setIsSingleEventShown, isSingleGameShown, setIsSingleGameShown, currUsername, setDefaultValue}) {
   
   const [currEventId, setCurrEventId] = useState(-1);
   const [currGameId, setCurrGameId] = useState(-1);
@@ -15,6 +15,7 @@ function GeneralEvents({ isSingleEventShown, setIsSingleEventShown, isSingleGame
       <SingleGamePage
         setIsSingleGameShown={setIsSingleGameShown}
         currGameId={currGameId}
+        currUsername={currUsername}
       />
   } else if (isSingleEventShown) {
     component = 
