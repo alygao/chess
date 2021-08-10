@@ -20,3 +20,10 @@
     align-items: center;
     color: black
 }
+
+.general-page-menu-bar-right {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: black;
+}
