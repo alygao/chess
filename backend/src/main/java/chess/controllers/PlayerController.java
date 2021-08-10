@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import chess.domain.CreateUserRequest;
+import chess.domain.LoginRequest;
 import chess.domain.Player;
 import chess.services.PlayerService;
 
@@ -48,5 +49,15 @@ public class PlayerController {
 			return ResponseEntity.badRequest().body(null);
 		}
 		return ResponseEntity.ok().body(players);
+	}
+
+	@PostMapping("/login")
+	// Returns id on success
+	public ResponseEntity<Integer> login(@RequestBody LoginRequest r) {
+		Integer pid = playerService.login(r.getUsername(), r.getPassword());
+		if (pid == null) {
+			return ResponseEntity.badRequest().body(null);
+		}
+		return ResponseEntity.ok().body(pid);
 	}
 }

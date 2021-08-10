@@ -24,6 +24,7 @@ public class PlayerDao {
 	
 	private static String INSERT_SQL = "INSERT INTO Player (name, username, password) VALUES (?,?,?)";
 	private static String SELECT_SQL = "SELECT pid, name, username FROM Player WHERE name = ?";
+	private static String LOGIN_SQL = "SELECT pid FROM Player WHERE username = ? AND password = ?";
 
 	public int createUser(String name, String username, String password) {
 		try (Connection conn = this.dataSource.getConnection();
@@ -65,5 +66,20 @@ public class PlayerDao {
 		return players;
 	}
 	
-	
+	public Integer login(String username, String password) {
+		try (Connection conn = this.dataSource.getConnection();
+				PreparedStatement statement = conn.prepareStatement(LOGIN_SQL)){
+			statement.setString(1, username);
+			statement.setString(2, password);
+			ResultSet rs = statement.executeQuery();
+			if (rs.next()) {
+				return rs.getInt("pid");
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 }
