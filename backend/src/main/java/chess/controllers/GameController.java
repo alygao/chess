@@ -118,7 +118,7 @@ public class GameController {
 	}
 	
 	@PostMapping(path="/user", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	// remove user favourited game
+	// adds user favourited game
 	public ResponseEntity<FavouritedGame> addUserFavouritedGame(@RequestBody FavouritedGame newFavouritedGame) {
 		System.out.println(newFavouritedGame.toString());
 		FavouritedGame favouritedGame = gameService.addUserFavouritedGame(newFavouritedGame);

@@ -38,7 +38,7 @@ public class GameDao {
 	private static String DELETE_USER_FAVOURITED_GAME_SQL = "DELETE FROM PlayerFavourited WHERE username = ? AND gid = ?;";
 	private static String ADD_USER_FAVOURITED_GAME_SQL = "INSERT INTO PlayerFavourited VALUES (?, ?);";
 	private static String PLAYERS_IN_GAME_SELECT_SQL = "SELECT p.pid, p.name, p.username, pi.elo, pi.isWhite FROM Player p INNER JOIN PlayedIn pi ON p.pid = pi.pid WHERE pi.gid = ?";
-	private static String SINGLE_GAME_SELECT_SQL = "SELECT gid, winner, date, eid FROM game WHERE gid = ?";
+	private static String SINGLE_GAME_SELECT_SQL = "SELECT gid, winner, date, eid FROM Game WHERE gid = ?";
 	private static String MOVES_IN_GAME_SQL = "SELECT * FROM Move WHERE gid = ?";
 
 	public WinStats getWinStats(String moveString) {
