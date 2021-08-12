@@ -3,6 +3,7 @@ import axios from "axios";
 import Button from "@material-ui/core/Button";
 import FavouritedGames from "./FavouritedGames"
 import SingleGamePage from "../GamesPage/SingleGamePage"
+import RegisterUser from "./RegisterUser"
 
 function GeneralUsersPage({currUsername, isSingleGameShown, setIsSingleGameShown}) {
     
@@ -11,7 +12,10 @@ function GeneralUsersPage({currUsername, isSingleGameShown, setIsSingleGameShown
 
     let component = <div></div>
 
-    if (isSingleGameShown) {
+    if (currUsername == null) {
+      component = <RegisterUser/>
+    } else {
+      if (isSingleGameShown) {
         component = 
           <SingleGamePage
             setIsSingleGameShown={setIsSingleGameShown}
@@ -25,6 +29,7 @@ function GeneralUsersPage({currUsername, isSingleGameShown, setIsSingleGameShown
         component = 
           <></>
       }
+    }
     
 
     return (

@@ -1,0 +1,21 @@
+.register-user-fields {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    /* width:30vw; */
+    margin: 0 30vw;
+    background: iceblue;
+}
+
+.register-user-fields input{
+    padding: 0.5rem;
+    margin: 1rem;
+    font-family: Raleway;
+    font-weight: normal;
+    font-size: 18px;
+}
+
+.register-user-button {
+    
+}

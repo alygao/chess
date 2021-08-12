@@ -26,11 +26,10 @@ public class PlayerController {
 	@Autowired
 	private PlayerService playerService;
 	
-	@PostMapping("/")
+	@PostMapping("/register")
 	// We will only ever create users since players are created
 	// from populate_db.sh
 	public ResponseEntity<String> createUser(@RequestBody CreateUserRequest r) {
-		// todo: make the fields and requests actually work
 		System.out.println("username = " + r.getUsername() );
 		int id = playerService.createUser(r.getName(), r.getUsername(), r.getPassword());
 		if (id == -1){
@@ -49,6 +48,15 @@ public class PlayerController {
 			return ResponseEntity.badRequest().body(null);
 		}
 		return ResponseEntity.ok().body(players);
+	}
+	
+	@GetMapping("/user")
+	public ResponseEntity<String> getNameOfUser(@RequestParam("username") String username) {
+		String name = playerService.getNameOfUser(username);
+		if (name == null) {
+			return ResponseEntity.badRequest().body(null);
+		}
+		return ResponseEntity.ok().body(name);
 	}
 
 	@PostMapping("/login")

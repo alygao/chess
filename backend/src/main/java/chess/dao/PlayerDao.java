@@ -22,11 +22,35 @@ public class PlayerDao {
 	@Autowired
 	private DataSource dataSource;
 	
+	private static String UNIQUE_SQL = "SELECT pid FROM Player WHERE username = ?";
 	private static String INSERT_SQL = "INSERT INTO Player (name, username, password) VALUES (?,?,?)";
 	private static String SELECT_SQL = "SELECT pid, name, username FROM Player WHERE name = ?";
+	private static String GET_NAME_SQL = "SELECT name FROM Player WHERE username = ?";
 	private static String LOGIN_SQL = "SELECT pid FROM Player WHERE username = ? AND password = ?";
+	
+	public boolean isUserInDatabase(String username) {
+		try (Connection conn = this.dataSource.getConnection();
+				PreparedStatement statement = conn.prepareStatement(UNIQUE_SQL, Statement.RETURN_GENERATED_KEYS)){
+			statement.setString(1, username);
+			statement.executeQuery();
+			ResultSet keys = statement.getGeneratedKeys();
+			if (keys.next()) {
+				return true;
+			} else {
+				return false;
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
 
 	public int createUser(String name, String username, String password) {
+		if (isUserInDatabase(username)) {
+			return -1;
+		}
 		try (Connection conn = this.dataSource.getConnection();
 				PreparedStatement statement = conn.prepareStatement(INSERT_SQL, Statement.RETURN_GENERATED_KEYS)){
 			statement.setString(1, name);
@@ -43,6 +67,22 @@ public class PlayerDao {
 			e.printStackTrace();
 		}
 		return -1;
+	}
+	
+	public String getNameOfUser(String username) {
+		try (Connection conn = this.dataSource.getConnection();
+				PreparedStatement statement = conn.prepareStatement(GET_NAME_SQL, Statement.RETURN_GENERATED_KEYS)){
+			statement.setString(1, username);
+			ResultSet rs = statement.executeQuery();
+			if (rs.next()) {
+				return rs.getString("name");
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	public List<Player> getPlayers(String name) {

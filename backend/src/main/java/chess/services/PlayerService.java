@@ -31,6 +31,10 @@ public class PlayerService {
 	public List<Player> getPlayers(String name) {
 		return this.playerDao.getPlayers(name);
 	}
+	
+	public String getNameOfUser(String username) {
+		return this.playerDao.getNameOfUser(username);
+	}
 
 	public Integer login(String username, String password) {
 		return this.playerDao.login(username, password);

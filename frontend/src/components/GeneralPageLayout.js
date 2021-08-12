@@ -90,7 +90,7 @@ function GeneralPageLayout() {
       ).then((res) => {
         setCurrUsername(inputUsername);
     }).catch((err) => {
-        alert("Incorrect username or password");
+        alert("Incorrect username or password!");
     });
 
   }
@@ -98,6 +98,8 @@ function GeneralPageLayout() {
   const logout = (e) => {
     e.preventDefault()
     setCurrUsername(null);
+    setInputUsername("");
+    setInputPassword("");
   }
 
   return (
@@ -120,7 +122,7 @@ function GeneralPageLayout() {
           </div>
           {currUsername  === null && <div className="general-page-menu-bar-right">
             <input type="text" value={inputUsername} placeholder="Username" onChange={(e) => setInputUsername(e.target.value)}/>
-            <input type="text" value={inputPassword} placeholder="Password" onChange={(e) => setInputPassword(e.target.value)}/>
+            <input type="password" value={inputPassword} placeholder="Password" onChange={(e) => setInputPassword(e.target.value)}/>
           
               
             <Button

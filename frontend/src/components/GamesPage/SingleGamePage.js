@@ -66,22 +66,24 @@ function SingleGamePage({setIsSingleGameShown, currGameId, currUsername}) {
     return (
         <div style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
             <h1>Game #{currGameId}</h1>
-            <Button
-                onClick={() => {
-                addOrRemoveGameFromFavourites(currGameId, currUsername)
-                }}
-                variant="contained"
-                style={{
-                backgroundColor: "#A5C1BE",
-                color: "black",
-                textTransform: "none",
-                fontFamily: "Raleway",
-                height:55,
-                margin: "1rem"
-                }}
-            >
-                {isFavourited ? 'remove from favourites' : 'add to favourites'}
-            </Button>
+            {currUsername != null && 
+                <Button
+                    onClick={() => {
+                    addOrRemoveGameFromFavourites(currGameId, currUsername)
+                    }}
+                    variant="contained"
+                    style={{
+                    backgroundColor: "#A5C1BE",
+                    color: "black",
+                    textTransform: "none",
+                    fontFamily: "Raleway",
+                    height:55,
+                    margin: "1rem"
+                    }}
+                >
+                    {isFavourited ? 'remove from favourites' : 'add to favourites'}
+                </Button>
+            }
 
             <SingleGameChessboard chess={chess} fen={fen} setFen={setFen} movesInGame={movesInGame}/>
             <MovesTable data={movesInGame}/>
