@@ -71,7 +71,6 @@ public class GameService {
 	public List<Game> getGames(String playerName, boolean viewBlackWinGames, boolean viewWhiteWinGames,
 			boolean viewDrawGames) {
 		// get player and game data
-		System.out.println("IN SERVICE.........");
 		return this.gameDao.getGames(playerName, viewBlackWinGames, viewWhiteWinGames, viewDrawGames);
 	}
 

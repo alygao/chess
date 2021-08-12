@@ -78,14 +78,6 @@ public class GameDao {
 			while (rs.next()) {
 				String s = rs.getString("nextMoveGivenOpening");
 				result.add(s);
-				/*
-				 * int moveEndIdx = s.indexOf("-", moveStartIdx); if (moveEndIdx == -1) {
-				 * moveEndIdx = s.length(); } if (moveEndIdx > moveStartIdx) { String nextMove =
-				 * s.substring(0, moveEndIdx); result.add(nextMove); }
-				 */
-				// System.out.println(moveStartIdx);
-				// System.out.println(moveEndIdx);
-				// System.out.println(result);
 			}
 			return result;
 		} catch (SQLException e) {
@@ -252,7 +244,6 @@ public class GameDao {
 			statement.setString(1, newFavouritedGame.getUsername());
 			statement.setInt(2, newFavouritedGame.getGid());
 			int rs = statement.executeUpdate();
-//			System.out.println(rs);
 			return newFavouritedGame;
 		} catch (SQLException e) {
 			e.printStackTrace();

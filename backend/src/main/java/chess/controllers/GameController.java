@@ -99,7 +99,6 @@ public class GameController {
 	public ResponseEntity<List<Game>> getUserFavouritedGames(
 			@RequestParam("username") String username
 			) {
-		System.out.println(username);
 		List<Game> result = gameService.getUserFavouritedGames(username);
 		if (result == null) {
 			return ResponseEntity.badRequest().body(null);
@@ -113,14 +112,12 @@ public class GameController {
 			@RequestParam("gid") int gid,
 			@RequestParam("username") String username
 			) {
-		System.out.println(username);
 		gameService.removeUserFavouritedGame(gid, username);
 	}
 	
 	@PostMapping(path="/user", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	// adds user favourited game
 	public ResponseEntity<FavouritedGame> addUserFavouritedGame(@RequestBody FavouritedGame newFavouritedGame) {
-		System.out.println(newFavouritedGame.toString());
 		FavouritedGame favouritedGame = gameService.addUserFavouritedGame(newFavouritedGame);
 		
 		if (favouritedGame == null) {

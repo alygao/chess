@@ -30,7 +30,6 @@ public class PlayerController {
 	// We will only ever create users since players are created
 	// from populate_db.sh
 	public ResponseEntity<String> createUser(@RequestBody CreateUserRequest r) {
-		System.out.println("username = " + r.getUsername() );
 		int id = playerService.createUser(r.getName(), r.getUsername(), r.getPassword());
 		if (id == -1){
 			return ResponseEntity.badRequest().body("probably a duplicate user");

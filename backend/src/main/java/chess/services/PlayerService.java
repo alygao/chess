@@ -16,14 +16,6 @@ public class PlayerService {
 	private PlayerDao playerDao;
 	
 	public int createUser(String name, String username, String password) {
-		// String greeting = "";
-		// if (Calendar.getInstance().get(Calendar.HOUR_OF_DAY) < 12 ) {
-		// 	greeting += "Good Morning, " + name;
-		// } else if (Calendar.getInstance().get(Calendar.HOUR_OF_DAY) < 18 ) {
-		// 	greeting += "Good Afternoon, " + name;
-		// } else {
-		// 	greeting += "Good Evening, " + name;
-		// }
 		
 		return this.playerDao.createUser(name, username, password);
 	}
