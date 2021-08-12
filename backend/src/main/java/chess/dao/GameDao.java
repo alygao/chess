@@ -29,7 +29,7 @@ public class GameDao {
 
 	private static String WIN_STATS_SQL = "SELECT SUM(CASE WHEN winner = 'w' THEN 1 ELSE 0 END) AS numWhiteWins, SUM(CASE WHEN winner = 'b' THEN 1 ELSE 0 END) AS numBlackWins, SUM(CASE WHEN winner = 't' THEN 1 ELSE 0 END) AS numDraws, COUNT(*) AS numGames FROM ( SELECT gid, GROUP_CONCAT(DISTINCT moveString ORDER BY turnNum SEPARATOR '-') AS moves FROM `Move` GROUP BY gid HAVING moves LIKE ?) GamesWithMove, Game WHERE GamesWithMove.gid = Game.gid";
 	private static String NEXT_MOVES_GIVEN_OPENING_SQL = "SELECT DISTINCT SUBSTRING_INDEX(moves, '-', -1) AS nextMoveGivenOpening FROM (SELECT SUBSTRING_INDEX(GROUP_CONCAT(DISTINCT moveString ORDER BY turnNum SEPARATOR '-'), '-', (LENGTH(?)-LENGTH(REPLACE(?,'-',''))) + 1) AS moves FROM `Move` GROUP BY gid HAVING moves LIKE ?) NextMovesGivenOpening;";
-	private static String GAME_WITH_PLAYER_SELECT_SQL = "SELECT g.gid, winner, `date`, pi1.pid AS pid1, pi2.pid AS pid2, pi1.elo AS elo1, pi2.elo AS elo2, pi1.isWHite AS p1IsWhite, p1.name as p1name, p2.name as p2name, p1.username as p1username, p2.username as p2username FROM Game g INNER JOIN PlayedIn pi1 ON g.gid = pi1.gid AND pi1.pid = ? INNER JOIN PlayedIn pi2 ON g.gid = pi2.gid AND pi2.pid != ? INNER JOIN Player p1 ON pi1.pid = p1.pid INNER JOIN Player p2 ON pi2.pid = p2.pid LIMIT 100";
+	private static String GAME_WITH_PLAYER_SELECT_SQL = "SELECT g.gid, winner, `date`, pi1.pid AS pid1, pi2.pid AS pid2, pi1.elo AS elo1, pi2.elo AS elo2, pi1.isWHite AS p1IsWhite, p1.name as p1name, p2.name as p2name, p1.username as p1username, p2.username as p2username FROM Game g INNER JOIN PlayedIn pi1 ON g.gid = pi1.gid AND pi1.pid = ? INNER JOIN PlayedIn pi2 ON g.gid = pi2.gid AND pi2.pid != ? INNER JOIN Player p1 ON pi1.pid = p1.pid INNER JOIN Player p2 ON pi2.pid = p2.pid";
 	private static String GAME_WITH_PLAYER_NAME_SELECT_SQL = "SELECT DISTINCT g.gid, g.winner, g.date, g.eid FROM Game g INNER JOIN PlayedIn pi ON g.gid = pi.gid INNER JOIN Player p ON pi.pid = p.pid WHERE name LIKE ?";
 	private static String USER_FAVOURITED_GAMES_SQL = "SELECT g.gid, g.winner, g.date, g.eid FROM Game g INNER JOIN (SELECT gid FROM PlayerFavourited WHERE username = ?) pf ON g.gid = pf.gid";
 	private static String DELETE_USER_FAVOURITED_GAME_SQL = "DELETE FROM PlayerFavourited WHERE username = ? AND gid = ?;";
@@ -146,6 +146,8 @@ public class GameDao {
 			SQL_STRING = SQL_STRING + " AND (" + winnerConditions + ")";
 		}
 
+		SQL_STRING += " LIMIT 100";
+
 		try (Connection conn = this.dataSource.getConnection();
 				PreparedStatement statement = conn.prepareStatement(SQL_STRING)) {
 			statement.setString(1, playerName + "%");
@@ -183,7 +185,7 @@ public class GameDao {
 		}
 		return null;
 	}
-	
+
 	public List<Game> getUserFavouritedGames(String username) {
 		try (Connection conn = this.dataSource.getConnection();
 				PreparedStatement statement = conn.prepareStatement(USER_FAVOURITED_GAMES_SQL)) {
@@ -222,7 +224,7 @@ public class GameDao {
 		}
 		return null;
 	}
-	
+
 	public void removeUserFavouritedGame(int gid, String username) {
 		try (Connection conn = this.dataSource.getConnection();
 				PreparedStatement statement = conn.prepareStatement(DELETE_USER_FAVOURITED_GAME_SQL)) {
@@ -234,7 +236,7 @@ public class GameDao {
 		}
 		return;
 	}
-	
+
 	public FavouritedGame addUserFavouritedGame(FavouritedGame newFavouritedGame) {
 		try (Connection conn = this.dataSource.getConnection();
 				PreparedStatement statement = conn.prepareStatement(ADD_USER_FAVOURITED_GAME_SQL)) {
