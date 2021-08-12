@@ -1,5 +1,5 @@
 import Button from "@material-ui/core/Button";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import CandidateMovesTable from "./CandidateMovesTable";
 import HorizontalBar from "./HorizontalBar";
 

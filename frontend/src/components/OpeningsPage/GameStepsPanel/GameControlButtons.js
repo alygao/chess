@@ -1,7 +1,6 @@
 import './GameControlButtons.css'
 import Button from "@material-ui/core/Button";
 
-const Chess = require("chess.js");
 
 function GameControlButtons({ chess, setChess, fen, setFen, setMoves, setMostRecentMove, moves, fenList, setFenList, getCandidateMovesByPreviousMoves }) {
     const resetBoard = (e) => {

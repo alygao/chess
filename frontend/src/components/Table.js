@@ -1,5 +1,3 @@
-import React, { useState, useEffect } from "react";
-
 import MaUTable from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -21,9 +19,6 @@ function Table({ columns, data, hiddenColumns }) {
       }
     },
   );
-
-
-  const viewShipment = (tableRow) => { }
 
   // Render the UI for your table
   return (

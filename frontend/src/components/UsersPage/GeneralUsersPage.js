@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import Button from "@material-ui/core/Button";
+import React, {useState } from "react";
 import FavouritedGames from "./FavouritedGames"
 import SingleGamePage from "../GamesPage/SingleGamePage"
 import RegisterUser from "./RegisterUser"

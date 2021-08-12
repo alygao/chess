@@ -10,7 +10,7 @@ function GameSteps({
     const formatMoves = (moves) => {
         let rows = [];
         for (let i = 0; i < moves.length; ++i) {
-            if (i % 2 == 0) {
+            if (i % 2 === 0) {
                 rows.push([moves[i].san]);
             } else {
                 rows[rows.length - 1].push(moves[i].san);
@@ -18,7 +18,7 @@ function GameSteps({
         }
         let formattedRows = []
         for (let i = 0; i < rows.length; ++i) {
-            if (rows[i].length == 1) {
+            if (rows[i].length === 1) {
                 formattedRows.push(<div>{(i + 1).toString() + ". " + rows[i][0]}</div>);
             } else {
                 formattedRows.push(<div>{(i + 1).toString() + ". " + rows[i][0] + " " + rows[i][1]}</div>);

@@ -1,7 +1,7 @@
 import "./GeneralPageLayout.css";
 import axios from 'axios';
 
-import { useHistory, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import chessIcon from "../images/chess_icon.svg";
 import Button from '@material-ui/core/Button'

@@ -1,6 +1,4 @@
 import "./OpeningsPage.css";
-
-import { useHistory, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 import ChessBoard from "./ChessBoard"
@@ -55,8 +53,6 @@ function OpeningsPage() {
             setMoves(newMoves)
             setMostRecentMove(move.san)
             setFen(chess.fen());
-
-            var updatedFenList = fenList
             fenList.push(fen)
             setFenList(fenList)
             getCandidateMovesByPreviousMoves(moves)
@@ -67,7 +63,7 @@ function OpeningsPage() {
         <div className="openings-page-main-container">
             {/* <h1>GAMES PAGE</h1> */}
             <div className="openings-page-main-content">
-                <GameStepsPanel chess={chess} setChess={setChess} moves={moves} mostRecentMove={mostRecentMove} setMoves={setMoves} fen={fen} setFen={setFen} setMostRecentMove={setMostRecentMove} moves={moves} fenList={fenList} setFenList={setFenList} getCandidateMovesByPreviousMoves={getCandidateMovesByPreviousMoves} />
+                <GameStepsPanel chess={chess} setChess={setChess} moves={moves} mostRecentMove={mostRecentMove} setMoves={setMoves} fen={fen} setFen={setFen} setMostRecentMove={setMostRecentMove} fenList={fenList} setFenList={setFenList} getCandidateMovesByPreviousMoves={getCandidateMovesByPreviousMoves} />
                 <ChessBoard fen={fen} handleMove={handleMove} />
             </div>
             <CandidateMoves moves={moves} candidateMoves={candidateMoves} handleMove={handleMove} />

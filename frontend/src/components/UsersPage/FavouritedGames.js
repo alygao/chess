@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Button from "@material-ui/core/Button";
 import GamesTable from '../GamesPage/GamesTable';
 
 function FavouritedGames({currUsername, setIsSingleGameShown, setCurrGameId}) {
